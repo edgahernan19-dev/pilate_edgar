@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIGNÉE - Pilates Reformer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        /* =========================================
+           ESTILOS GLOBALES Y DE CLIENTE (styles.css)
+           ========================================= */
+        :root {
+            --primary-gold: #e8c547;
+            --primary-gold-dark: #c9a028;
+            --dark-bg: #0a0a0a;
+            --dark-gray: #111;
+            --text-light: #f5f5f5;
+            --accent: #e8c547;
+            --gold: #e8c547;
+            --bg-light: #f18509;
+            --text-dark: #2d3436;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        @keyframes premiumGoldShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            /* Fondo con animación dorada premium - El !important evita que el JS lo ponga naranja */
+            background: linear-gradient(-45deg, #0a0a0a, #1a1505, #0a0a0a, #110d02) !important;
+            background-size: 400% 400% !important;
+            animation: premiumGoldShift 18s ease infinite !important;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Vistas Monolíticas */
+        .view-section {
+            display: none;
+            width: 100%;
+            min-height: 100vh;
+        }
+        .view-section.active {
+            display: block;
+        }
+
+        /* =========================================
+           ESTILOS VISTA INICIO (inicio.html)
+           ========================================= */
+        .inicio-hero {
+            height: 100dvh;
+            min-height: 720px;
+            background: linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.65)),
+                        url('https://images.unsplash.com/photo-1518611012118-696072086579?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+        .brand-wrapper { margin-bottom: 5vh; }
+        .logo-hero {
+            height: 90px;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 4px 12px rgba(232,197,71,0.4));
+        }
+        .inicio-hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(6rem, 14vw, 13rem);
+            color: var(--primary-gold);
+            letter-spacing: 8px;
+            line-height: 0.88;
+            margin: 0;
+            text-shadow: 0 6px 20px rgba(0,0,0,0.7);
+        }
+        .subtitle {
+            font-size: clamp(1.5rem, 5vw, 2.4rem);
+            margin: 1.5rem 0 4rem;
+            opacity: 0.92;
+            letter-spacing: 1.5px;
+        }
+        .access-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            width: 100%;
+            max-width: 420px;
+            padding: 0 20px;
+        }
+        .btn-access {
+            background: linear-gradient(135deg, #e8c547, #c9a028);
+            color: #000;
+            border: none;
+            padding: 1.2rem 2rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.4rem, 5vw, 2.1rem); 
+            letter-spacing: 1px;
+            border-radius: 60px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(232,197,71,0.35);
+            transition: all 0.35s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+        .btn-access:hover {
+            transform: translateY(-8px) scale(1.07);
+            box-shadow: 0 25px 50px rgba(232,197,71,0.55);
+        }
+        .emoji { font-size: 1.3em; }
+        .social-links { margin-top: 5vh; font-size: 1.3rem; opacity: 0.8; }
+        .social-ig { color: var(--primary-gold); text-decoration: none; font-weight: 500; }
+        @media (min-width: 600px) {
+            .access-buttons { flex-direction: row; justify-content: center; max-width: none; }
+            .btn-access { min-width: 200px; }
+        }
+
+        /* =========================================
+           ESTILOS VISTA CLIENTE (index.html)
+           ========================================= */
+        .navbar {
+            background-color: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(232, 197, 71, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .back-to-inicio {
+            position: static;
+            background: rgba(232, 197, 71, 0.1);
+            color: var(--primary-gold);
+            padding: 8px 18px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(232, 197, 71, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .back-to-inicio:hover { 
+            background: var(--primary-gold); 
+            color: #000; 
+            box-shadow: 0 0 15px rgba(232, 197, 71, 0.4);
+        }
+        .logo { display: flex; align-items: center; font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; letter-spacing: 2px; color: var(--primary-gold); }
+        .logo-img { height: 55px; margin-right: 15px; }
+        .nav-links { list-style: none; display: flex; gap: 3rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: color 0.3s; cursor: pointer; }
+        .nav-links a:hover { color: var(--primary-gold); }
+        .cart-icon { font-size: 1.6rem; }
+        
+        .hero {
+            height: 100vh;
+            min-height: 850px;
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), 
+                        url('https://images.unsplash.com/photo-1518611012118-696072086579?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center 40%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero-content h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4.5rem, 10vw, 9rem); letter-spacing: 4px; margin-bottom: 1.5rem; line-height: 1; }
+        .hero-subtitle { font-size: clamp(1.4rem, 4vw, 2rem); margin: 0 auto 3rem; max-width: 900px; opacity: 0.95; font-weight: 400; }
+        .btn-main, .btn-reserve {
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-gold-dark));
+            color: #000; border: none; padding: 1.4rem 3.5rem; font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem; letter-spacing: 2px; border-radius: 50px; cursor: pointer;
+            transition: all 0.4s ease; box-shadow: 0 8px 25px rgba(232, 197, 71, 0.4);
+        }
+        .btn-main:hover, .btn-reserve:hover { transform: translateY(-6px) scale(1.06); box-shadow: 0 20px 40px rgba(232, 197, 71, 0.6); }
+        .services, .shop { padding: 160px 6% 120px; }
+        .section-title { text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 8vw, 6.5rem); margin-bottom: 5rem; color: var(--primary-gold); letter-spacing: 3px; }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 3rem; max-width: 1400px; margin: 0 auto; }
+        .card { background: rgba(232, 197, 71, 0.05); border: 1px solid rgba(232, 197, 71, 0.2); padding: 3rem 2.5rem; border-radius: 24px; text-align: center; transition: all 0.5s ease; backdrop-filter: blur(10px); }
+        .card:hover { transform: translateY(-20px) scale(1.05); box-shadow: 0 30px 60px rgba(232, 197, 71, 0.25); border-color: var(--primary-gold); }
+        .card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; margin-bottom: 1.2rem; letter-spacing: 1px; }
+        .class-icon { font-size: 4.5rem; margin: 1.5rem 0 2rem; color: var(--primary-gold); }
+        .price { font-size: 2.5rem; font-weight: bold; color: var(--primary-gold); margin: 1.2rem 0; }
+        .date-picker, .hour-picker { width: 100%; padding: 15px; margin: 1.2rem 0; background: rgba(255,255,255,0.05); border: 1px solid var(--primary-gold); color: white; border-radius: 12px; font-size: 1.1rem; }
+        .booking-form { margin: 2rem 0; }
+        .cupo-info { font-size: 1.1rem; margin-top: 1.2rem; color: #ccc; }
+        
+        .featured-section { padding: 100px 6% 80px; background: rgba(10,10,10,0.7); }
+        .featured-card { background: rgba(232, 197, 71, 0.07); border: 1px solid rgba(232, 197, 71, 0.3); }
+        .featured-icon { font-size: 5.5rem; margin: 0 0 1.8rem; color: #e8c547; }
+        .btn-reserve.small { padding: 1rem 2.5rem; font-size: 1.4rem; margin-top: 1.5rem; }
+        .payment-info { text-align: center; max-width: 900px; margin: 0 auto; padding: 3rem; background: rgba(232, 197, 71, 0.04); border-radius: 24px; border: 1px solid rgba(232, 197, 71, 0.15); }
+        
+        .whatsapp-float { position: fixed; bottom: 40px; right: 40px; width: 75px; height: 75px; background-color: #25D366; border-radius: 50%; box-shadow: 0 8px 25px rgba(0,0,0,0.4); z-index: 9999; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
+        .whatsapp-float:hover { transform: scale(1.15); box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5); }
+        .whatsapp-icon-container { width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; }
+        .whatsapp-float img { width: 100%; height: 100%; object-fit: contain; }
+        
+        .footer { background: #000; padding: 5rem 6% 3rem; text-align: center; color: #aaa; font-size: 1rem; }
+        .footer-content .logo { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--primary-gold); margin-bottom: 2rem; justify-content: center;}
+        .footer p { margin: 1rem 0; }
+        .footer a { color: var(--primary-gold); text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        /* Media Dinámica (Imágenes y Videos Firebase) */
+        .dynamic-media-container { width: 100%; height: 200px; margin-bottom: 15px; border-radius: 12px; overflow: hidden; background: rgba(0,0,0,0.3); }
+        .dynamic-media-container img, .dynamic-media-container video { width: 100%; height: 100%; object-fit: cover; }
+
+        /* =========================================
+           ESTILOS VISTA ADMIN (admin.html) PREMIUM
+           ========================================= */
+        .admin-body-bg { background: transparent !important; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .admin-panel-active { align-items: flex-start !important; }
+        
+        #view-admin-login { display: none; width: 100%; min-height: 100vh; justify-content: center; align-items: center; background: transparent !important; }
+        #view-admin-panel { display: none; width: 100%; min-height: 100vh; background: transparent !important; padding: 40px 20px; }
+
+        .login-box { 
+            background: rgba(15, 15, 15, 0.85);
+            backdrop-filter: blur(20px);
+            padding: 50px 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(232, 197, 71, 0.3);
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 20px rgba(232, 197, 71, 0.1);
+            width: 90%;
+            max-width: 420px;
+            color: white; 
+        }
+        .login-box h2 { color: var(--primary-gold); }
+        .login-logo { width: 80px; margin-bottom: 20px; }
+        
+        .admin-input { 
+            width: 100%; 
+            padding: 15px; 
+            margin: 12px 0; 
+            border-radius: 12px; 
+            border: 1px solid rgba(232, 197, 71, 0.2); 
+            background: rgba(0, 0, 0, 0.6); 
+            color: white; 
+            box-sizing: border-box; 
+            font-size: 1rem; 
+            transition: all 0.3s ease; 
+        }
+        .admin-input:focus { outline: none; border-color: var(--primary-gold); box-shadow: 0 0 10px rgba(232, 197, 71, 0.2); }
+        
+        .btn-login { width: 100%; padding: 15px; background: var(--gold); border: none; border-radius: 12px; font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; cursor: pointer; transition: 0.3s; color: #000; margin-top: 10px;}
+        .btn-login:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(232, 197, 71, 0.3); }
+
+        .admin-container { width: 100%; max-width: 1000px; margin: 0 auto; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: rgba(232, 197, 71, 0.1); color: var(--primary-gold); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-bottom: 20px; cursor: pointer; border: 1px solid rgba(232, 197, 71, 0.4); transition: all 0.3s ease;}
+        .btn-back:hover { background: var(--primary-gold); color: #000; }
+        
+        .admin-card { 
+            background: rgba(20, 20, 20, 0.7); 
+            backdrop-filter: blur(15px); 
+            padding: 40px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(232, 197, 71, 0.2); 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5); 
+            margin-bottom: 40px; 
+            color: white; 
+        }
+        .admin-card h3 { color: var(--primary-gold); margin-bottom: 20px; font-size: 1.8rem; font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px; }
+        
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        
+        .input-responsive { 
+            width: 100%; 
+            padding: 12px; 
+            border-radius: 8px; 
+            background: rgba(0, 0, 0, 0.5); 
+            color: white; 
+            border: 1px solid rgba(232, 197, 71, 0.3); 
+            box-sizing: border-box; 
+            transition: all 0.3s ease;
+        }
+        .input-responsive:focus { border-color: var(--primary-gold); outline: none; }
+        
+        .admin-card textarea { 
+            grid-column: span 2; 
+            height: 80px; 
+            background: rgba(0, 0, 0, 0.5); 
+            color: white; 
+            border: 1px solid rgba(232, 197, 71, 0.3); 
+            padding: 10px; 
+            border-radius: 8px; 
+            width: 100%; 
+            transition: all 0.3s ease;
+        }
+        .admin-card textarea:focus { border-color: var(--primary-gold); outline: none; }
+        
+        .btn-save { grid-column: span 2; background: var(--gold); padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color:#000; transition: all 0.3s ease;}
+        .btn-save:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(232, 197, 71, 0.3); }
+        
+        .inventory-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        
+        .item-card { 
+            background: rgba(15, 15, 15, 0.8); 
+            backdrop-filter: blur(10px); 
+            padding: 25px; 
+            border-radius: 16px; 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-left: 5px solid var(--primary-gold); 
+            color: #eee; 
+            transition: transform 0.3s ease; 
+        }
+        .item-card:hover { transform: translateY(-5px); border-left-color: #fff; }
+        
+        .btn-delete { background: rgba(255, 71, 87, 0.1); color: #ff4757; border: 1px solid rgba(255, 71, 87, 0.3); width: 100%; padding: 10px; border-radius: 6px; margin-top: 10px; cursor: pointer; transition: all 0.3s ease;}
+        .btn-delete:hover { background: #ff4757; color: white; }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 1.2rem 6%; flex-direction: column; gap: 1.2rem; }
+            .nav-links { flex-direction: column; gap: 1.8rem; }
+            .hero { height: 90vh; min-height: 700px; }
+            .hero-content h1 { font-size: 4.5rem; }
+            .services, .shop { padding: 120px 6% 80px; }
+            .whatsapp-float { bottom: 30px; right: 30px; width: 65px; height: 65px; }
+            .whatsapp-icon-container { width: 45px; height: 45px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .admin-card textarea, .btn-save { grid-column: span 1; }
+        }
+        
+        @media (max-width: 600px) {
+            .form-grid { grid-template-columns: 1fr; } /* Todo en 1 columna en celular */
+            .btn-save, textarea { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="view-inicio" class="view-section active">
+        <div class="inicio-hero">
+            <div class="brand-wrapper">
+                <img src="Captura de pantalla 2026-02-04 185246 copy.png" alt="LIGNÉE" class="logo-hero" onerror="this.style.display='none'">
+                <h1>LIGNÉE</h1>
+                <p class="subtitle">PILATES REFORMER • TLALNEPANTLA</p>
+            </div>
+
+            <div class="access-buttons">
+                <button class="btn-access cliente" onclick="showView('view-cliente')">
+                    <span class="emoji">👤</span>Cliente
+                </button>
+                <button class="btn-access admin" onclick="showView('view-admin-login')">
+                    <span class="emoji">⚙️</span>Administrador
+                </button>
+            </div>
+
+            <div class="social-links">
+                <a href="https://instagram.com/lignee.pilates" target="_blank" class="social-ig">@lignee.pilates</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-cliente" class="view-section">
+        <nav class="navbar">
+            <div class="navbar-left">
+                <button class="back-to-inicio" onclick="showView('view-inicio')">← Inicio</button>
+                <div class="logo">
+                    <img src="Captura de pantalla 2026-02-04 185246 copy.png" alt="LIGNÉE" class="logo-img" onerror="this.style.display='none'">
+                    LIGNÉE
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a onclick="scrollToSection('inicio-cliente')">INICIO</a></li>
+                <li><a onclick="scrollToSection('clases')">CLASES</a></li>
+                <li><a onclick="scrollToSection('tienda')">TIENDA</a></li>
+                <li><a onclick="scrollToSection('tienda')" class="cart-icon">🛒 <span id="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+
+        <header id="inicio-cliente" class="hero">
+            <div class="hero-content">
+                <h1>TRANSFORMA TU CUERPO</h1>
+                <p class="hero-subtitle">Clases exclusivas de Reformer Pilates • Máximo 5 personas • Esculpe, fortalece y revitaliza en Tlalnepantla</p>
+                <button class="btn-main" onclick="scrollToSection('clases'); highlightFirstCard();">
+                    RESERVAR TU CLASE
+                </button>
+            </div>
+        </header>
+
+        <section id="dynamic-firebase-content" class="services" style="padding-top: 80px; padding-bottom: 40px; background: rgba(0,0,0,0.5);">
+            <h2 class="section-title" style="font-size: 3rem; margin-bottom: 3rem;">NOVEDADES EN TIEMPO REAL</h2>
+            <div id="client-dynamic-list" class="grid-container">
+                </div>
+        </section>
+
+        <section id="clases" class="services">
+            <h2 class="section-title">CLASES Y PAQUETES</h2>
+            <div class="grid-container">
+                <div class="card" id="card-grupal">
+                    <h3>Clase Grupal Reformer</h3>
+                    <div class="class-icon">💪</div>
+                    <p class="price">$450 MXN</p>
+                    <p>55 min • Todos los niveles • Máx. 5 personas</p>
+                    <div class="booking-form">
+                        <input type="date" class="date-picker" id="date-grupal" min="2026-02-10">
+                        <select class="hour-picker" id="hora-grupal">
+                            <option value="">Selecciona fecha primero</option>
+                        </select>
+                        <button class="btn-reserve" onclick="reservarConPDF('Clase Grupal Reformer', 450, 'grupal')">
+                            Reservar por WhatsApp
+                        </button>
+                    </div>
+                    <p class="cupo-info">Cupo restante: <span id="cupo-grupal">5</span></p>
+                </div>
+
+                <div class="card highlighted" id="card-privada">
+                    <h3>Sesión Privada Reformer</h3>
+                    <div class="class-icon">🔥</div>
+                    <p class="price">$950 MXN</p>
+                    <p>60 min personalizados • Tus objetivos primero</p>
+                    <div class="booking-form">
+                        <input type="date" class="date-picker" id="date-privada" min="2026-02-10">
+                        <select class="hour-picker" id="hora-privada">
+                            <option value="">Selecciona fecha primero</option>
+                        </select>
+                        <button class="btn-reserve" onclick="reservarConPDF('Sesión Privada Reformer', 950, 'privada')">
+                            Reservar por WhatsApp
+                        </button>
+                    </div>
+                    <p class="cupo-info">Cupo restante: <span id="cupo-privada">3</span></p>
+                </div>
+
+                <div class="card">
+                    <h3>Paquete 10 sesiones</h3>
+                    <div class="class-icon">🌟</div>
+                    <p class="price">$4,000 MXN <small>(10% dto)</small></p>
+                    <p>Válido 3 meses • Grupales o mixtas</p>
+                    <div class="booking-form">
+                        <input type="date" class="date-picker" id="date-paquete" min="2026-02-10">
+                        <button class="btn-reserve" onclick="reservarConPDF('Paquete 10 sesiones', 4000)">
+                            Comprar por WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-section">
+            <h2 class="section-title">Lo que te ofrecemos</h2>
+            <div class="grid-container">
+                <div class="card featured-card">
+                    <div class="featured-icon">📅</div>
+                    <h3>Clases Destacadas</h3>
+                    <p>Reformer en grupo reducido (máx 5 personas). Todos los niveles. Horarios flexibles y atención personalizada.</p>
+                    <a onclick="scrollToSection('clases')" class="btn-reserve small" style="display:inline-block; cursor:pointer;">Ver horarios</a>
+                    
+                </div>
+
+                <div class="card featured-card">
+                    <div class="featured-icon">💳</div>
+                    <h3>Planes y Paquetes</h3>
+                    <p>Paquete de 10 sesiones con descuento. Próximamente membresías mensuales. Pago fácil por SPEI o efectivo.</p>
+                    <a onclick="scrollToSection('clases')" class="btn-reserve small" style="display:inline-block; cursor:pointer;">Ver paquetes</a>
+                </div>
+
+                <div class="card featured-card">
+                    <div class="featured-icon">👩‍🏫</div>
+                    <h3>Nuestro Equipo</h3>
+                    <p>Instructores certificados en Pilates Reformer. Enfoque en tu postura, fuerza y bienestar integral.</p>
+                    <button class="btn-reserve small" onclick="alert('Pronto: perfiles de instructores')">Conócenos</button>
+                </div>
+            </div>
+        </section>
+        
+
+        <section id="tienda" class="shop">
+            <h2 class="section-title">PRODUCTOS & ACCESORIOS</h2>
+            <div class="grid-container shop-grid">
+                <div class="card">
+                    <h3>Reformer Loops Set</h3>
+                    <p class="price">$680 MXN</p>
+                    <p>Par de asas premium.</p>
+                    <button class="btn-reserve" onclick="addToCart('Reformer Loops Set', 680)">Añadir por WhatsApp</button>
+                </div>
+                <div class="card">
+                    <h3>Mat Pilates Antideslizante</h3>
+                    <p class="price">$890 MXN</p>
+                    <p>6 mm, ecológico.</p>
+                    <button class="btn-reserve" onclick="addToCart('Mat Pilates Antideslizante', 890)">Añadir por WhatsApp</button>
+                </div>
+                <div class="card">
+                    <h3>Set Bandas Resistencia</h3>
+                    <p class="price">$450 MXN</p>
+                    <p>5 niveles.</p>
+                    <button class="btn-reserve" onclick="addToCart('Set Bandas Resistencia', 450)">Añadir por WhatsApp</button>
+                </div>
+                <div class="card">
+                    <h3>Calcetines Grip</h3>
+                    <p class="price">$320 MXN</p>
+                    <p>Antideslizantes.</p>
+                    <button class="btn-reserve" onclick="addToCart('Calcetines Grip', 320)">Añadir por WhatsApp</button>
+                </div>
+            </div>
+
+            <div class="payment-info">
+                <h3>Métodos de pago</h3>
+                <p>Transferencia SPEI o efectivo en estudio.</p>
+                <p>Confirmamos por WhatsApp.</p>
+            </div>
+        </section>
+
+        <a href="https://wa.me/525543621418?text=¡Hola!%20Quiero%20reservar%20en%20LIGNÉE%20Pilates" 
+           class="whatsapp-float" target="_blank" title="Chatea con nosotros">
+            <div class="whatsapp-icon-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+            </div>
+        </a>
+        <section id="videos-muestra" class="services" style="display: none;">
+        <h2 class="section-title">VIDEOS DE MUESTRA</h2>
+        <div class="grid-container" id="contenedor-videos">
+            </div>
+    </section>
+
+    <section id="ubicacion" class="featured-section">
+        <h2 class="section-title">NUESTRA UBICACIÓN</h2>
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">Nos encontramos en Tlalnepantla, Estado de México. Un espacio diseñado para tu bienestar.</p>
+            <div style="border-radius: 20px; overflow: hidden; border: 2px solid var(--primary-gold);">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15042.825220302062!2d-99.2084!3d19.5375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21d5a3b7c3b3b%3A0x7b3b3b3b3b3b3b3b!2sTlalnepantla%20de%20Baz%2C%20Méx.!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+        
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="logo">LIGNÉE</div>
+                <p>Tlalnepantla, Estado de México</p>
+                <p>WhatsApp: <a href="https://wa.me/525543621418">55 4362 1418</a></p>
+                <p>Instagram: @lignee.pilates</p>
+                <p>© 2026 LIGNÉE Pilates Reformer</p>
+            </div>
+        </footer>
+    </div>
+
+    <div id="view-admin-login" class="view-section">
+        <div class="login-box">
+            <img src="Captura de pantalla 2026-02-04 185246 copy.png" alt="Logo" class="login-logo" onerror="this.style.display='none'">
+            <h2 style="font-family: 'Bebas Neue'; letter-spacing: 2px;">ACCESO ADMIN</h2>
+            <input type="text" id="user" class="admin-input" placeholder="Usuario">
+            <input type="password" id="pass" class="admin-input" placeholder="Contraseña">
+            <button class="btn-login" onclick="validarLogin()">ENTRAR</button>
+            <button class="btn-back" style="margin-top:20px; width:100%; justify-content:center;" onclick="showView('view-inicio')">← Volver al Inicio</button>
+        </div>
+    </div>
+
+    <div id="view-admin-panel" class="view-section">
+        <div class="admin-container">
+            <button onclick="showView('view-inicio')" class="btn-back">← Salir del Panel</button>
+            <h1 style="color: var(--primary-gold); font-family: 'Bebas Neue'; font-size: 3rem; margin-bottom: 20px; letter-spacing: 2px;">Gestión de Contenido Firebase</h1>
+
+            <div class="admin-card">
+    <h3>Añadir Nuevo Registro</h3>
+    <div class="form-grid">
+        <select id="categoria" class="input-responsive">
+            <option value="clases">Clase / Sesión</option>
+            <option value="productos">Producto Tienda</option>
+            <option value="ofrecemos">Lo que ofrecemos</option>
+        </select>
+        <input type="text" id="nombre" placeholder="Nombre" class="input-responsive">
+        <input type="number" id="precio" placeholder="Precio MXN (Opcional)" class="input-responsive">
+        
+        <select id="tipoMultimedia" class="input-responsive" onchange="cambiarInputMedia()">
+            <option value="ninguno">Sin Multimedia</option>
+            <option value="imagen-local">Subir Imagen (Dispositivo)</option>
+            <option value="video-url">Enlace de Video Externo</option>
+        </select>
+        
+        <input type="file" id="archivoMedia" accept="image/*" class="input-responsive" style="display:none;">
+        <input type="text" id="urlMedia" placeholder="Pega el enlace del video" class="input-responsive" style="display:none;">
+
+        <textarea id="descripcion" placeholder="Descripción..."></textarea>
+        <button class="btn-save" onclick="guardarFirebase()">PUBLICAR AHORA</button>
+    </div>
+</div>
+
+            <h2 style="color: white; font-family: 'Bebas Neue'; margin-bottom: 20px; font-size: 2.2rem; letter-spacing: 1px;">Inventario en Tiempo Real</h2>
+            <div id="lista-items" class="inventory-grid"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        // --- 1. CONFIGURACIÓN FIREBASE v12.10.0 ---
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+        import { getDatabase, ref, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
+
+        // TUS NUEVAS CREDENCIALES
+        const firebaseConfig = {
+            apiKey: "AIzaSyCzeIrOCRJstrNBdQbLjGlxJtVCMLReq7I",
+            authDomain: "pilates-12f09.firebaseapp.com",
+            projectId: "pilates-12f09",
+            storageBucket: "pilates-12f09.firebasestorage.app",
+            messagingSenderId: "731165113551",
+            appId: "1:731165113551:web:486c65996782c2f6cacbba"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // --- 2. LÓGICA DE NAVEGACIÓN SPA (Single Page Application) ---
+        window.showView = function(viewId) {
+            document.querySelectorAll('.view-section').forEach(el => el.style.display = 'none');
+            
+            const target = document.getElementById(viewId);
+            if(target) {
+                target.style.display = (viewId === 'view-admin-login' || viewId === 'view-admin-panel') ? 'flex' : 'block';
+                
+                // El fondo ahora se maneja por CSS con !important, no afectará tu lógica de Firebase ni Javascript
+                if (viewId === 'view-admin-login' || viewId === 'view-admin-panel') {
+                    document.body.style.background = "#f18509"; 
+                } else {
+                    document.body.style.background = "#0a0a0a"; 
+                }
+            }
+            window.scrollTo(0, 0);
+        };
+
+        // --- 3. FUNCIONES DEL CLIENTE (funtion.js integradas) ---
+        window.scrollToSection = function(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) section.scrollIntoView({ behavior: 'smooth' });
+        };
+
+        window.highlightFirstCard = function() {
+            const firstCard = document.getElementById('card-grupal');
+            if (firstCard) {
+                firstCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                firstCard.style.transform = 'scale(1.05)';
+                firstCard.style.borderColor = '#e8c547';
+                setTimeout(() => {
+                    firstCard.style.transform = 'none';
+                    firstCard.style.borderColor = 'rgba(232, 197, 71, 0.2)';
+                }, 3500);
+            }
+        };
+
+        const horariosPorDia = {
+            0: [], // Domingo
+            1: ["07:00", "08:30", "10:00", "17:00", "18:30"],
+            2: ["08:00", "09:30", "16:00", "19:00"],
+            3: ["07:30", "09:00", "17:30", "19:30"],
+            4: ["08:00", "09:30", "18:00"],
+            5: ["07:00", "08:30", "17:00", "18:30", "20:00"],
+            6: ["09:00", "10:30", "11:30"]
+        };
+
+        let cartCount = 0;
+        const whatsappNumber = "525539001960";
+        const cupos = { grupal: 5, privada: 3 };
+
+        function actualizarHorarios(tipo) {
+            const dateEl = document.getElementById(`date-${tipo}`);
+            const horaEl = document.getElementById(`hora-${tipo}`);
+            if (!dateEl || !horaEl) return;
+
+            dateEl.addEventListener('change', () => {
+                const val = dateEl.value;
+                if (!val) {
+                    horaEl.innerHTML = '<option value="">Selecciona fecha primero</option>';
+                    return;
+                }
+                const fecha = new Date(val);
+                const dia = fecha.getDay();
+                const horarios = horariosPorDia[dia] || [];
+
+                horaEl.innerHTML = '<option value="">Selecciona horario</option>';
+                if (horarios.length === 0) {
+                    horaEl.innerHTML += '<option>No disponible este día</option>';
+                } else {
+                    horarios.forEach(h => {
+                        horaEl.innerHTML += `<option value="${h}">${h}</option>`;
+                    });
+                }
+            });
+        }
+
+        actualizarHorarios('grupal');
+        actualizarHorarios('privada');
+
+        window.addToCart = function(item, price) {
+            cartCount++;
+            document.getElementById('cart-count').innerText = cartCount;
+            const msg = `¡Hola! Quiero consultar/comprar:\n${item} - $${price} MXN\n\nMis datos:\nNombre:\nTeléfono:`;
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
+        };
+
+        window.reservarConPDF = function(item, price, tipo = null) {
+            let fecha = "", hora = "";
+            if (tipo === 'grupal') {
+                fecha = document.getElementById('date-grupal')?.value || "";
+                hora = document.getElementById('hora-grupal')?.value || "";
+            } else if (tipo === 'privada') {
+                fecha = document.getElementById('date-privada')?.value || "";
+                hora = document.getElementById('hora-privada')?.value || "";
+            } else {
+                fecha = document.getElementById('date-paquete')?.value || "";
+            }
+
+            if (!fecha) return alert("Selecciona una fecha.");
+            if ((tipo === 'grupal' || tipo === 'privada') && !hora) return alert("Selecciona un horario.");
+            if (tipo && cupos[tipo] <= 0) return alert("Sin cupo disponible.");
+
+            if (tipo) {
+                cupos[tipo]--;
+                document.getElementById(`cupo-${tipo}`).innerText = cupos[tipo];
+            }
+
+            cartCount++;
+            document.getElementById('cart-count').innerText = cartCount;
+
+            let reservas = JSON.parse(localStorage.getItem('reservasLignee') || '[]');
+            reservas.push({ servicio: item, precio: price, fecha, hora: hora || 'N/A', estado: 'Pendiente' });
+            localStorage.setItem('reservasLignee', JSON.stringify(reservas));
+
+            const msg = `¡Hola LIGNÉE! Reserva:\n${item} - $${price}\nFecha: ${fecha}${hora ? `\nHorario: ${hora}` : ''}\n\nMis datos:\nNombre:\nTeléfono:`;
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
+        };
+
+        // --- 4. LÓGICA DE LOGIN ADMIN ---
+        window.validarLogin = function() {
+            const u = document.getElementById('user').value;
+            const p = document.getElementById('pass').value;
+
+            if(u === "Edgar" && p === "Lignee") {
+                showView('view-admin-panel');
+                document.getElementById('view-admin-panel').style.alignItems = 'flex-start';
+                cargarDatosAdmin();
+            } else {
+                alert("Usuario o contraseña incorrectos");
+            }
+        };
+
+        // --- 5. LÓGICA FIREBASE (GUARDAR Y LEER CON IMÁGENES/VIDEOS) ---
+        window.guardarFirebase = function() {
+            const cat = document.getElementById('categoria').value;
+            const itemRef = ref(db, cat);
+            const nuevoRef = push(itemRef);
+
+            const payload = {
+                nombre: document.getElementById('nombre').value,
+                precio: document.getElementById('precio').value,
+                descripcion: document.getElementById('descripcion').value,
+                cupo: document.getElementById('cupo') ? document.getElementById('cupo').value : "N/A",
+                mediaTipo: document.getElementById('tipoMultimedia').value,
+                mediaUrl: document.getElementById('urlMedia').value
+            };
+
+            set(nuevoRef, payload).then(() => {
+                alert("¡Datos guardados con éxito!");
+                document.getElementById('nombre').value = '';
+                document.getElementById('precio').value = '';
+                document.getElementById('descripcion').value = '';
+                if(document.getElementById('cupo')) document.getElementById('cupo').value = '';
+                document.getElementById('urlMedia').value = '';
+                document.getElementById('tipoMultimedia').value = 'ninguno';
+            }).catch((error) => {
+                alert("Error al guardar: " + error);
+            });
+        };
+
+        // Cargar datos para el Admin
+        function cargarDatosAdmin() {
+            const lista = document.getElementById('lista-items');
+            
+            ['clases', 'productos'].forEach(nodo => {
+                onValue(ref(db, nodo), (snapshot) => {
+                    if(nodo === 'clases') lista.innerHTML = ''; // Limpiar solo en la primera pasada para no duplicar
+                    const data = snapshot.val();
+                    
+                    if(data) {
+                        for(let id in data) {
+                            const i = data[id];
+                            let mediaHtml = '';
+                            
+                            // Renderizar imagen o video si existe
+                            if(i.mediaTipo === 'imagen-local' && i.media) {
+                                mediaHtml = `<div style="width:100%; height:120px; overflow:hidden; border-radius:8px; margin-bottom:10px;"><img src="${i.media}" style="width:100%; height:100%; object-fit:cover;"></div>`;
+                            } else if(i.mediaTipo === 'video-url' && i.media) {
+                                mediaHtml = `<div style="width:100%; height:120px; overflow:hidden; border-radius:8px; margin-bottom:10px;"><video src="${i.media}" controls style="width:100%; height:100%; object-fit:cover;"></video></div>`;
+                            }
+
+                            lista.innerHTML += `
+                                <div class="item-card">
+                                    <small>${nodo.toUpperCase()}</small>
+                                    ${mediaHtml}
+                                    <h4 style="margin-top:10px;">${i.nombre}</h4>
+                                    <p><b>$${i.precio}</b></p>
+                                    <p style="font-size:0.9em; color:#bbb;">Cupo: ${i.cupo || 'N/A'}</p>
+                                    <button class="btn-delete" onclick="eliminarItem('${nodo}', '${id}')">Eliminar</button>
+                                </div>
+                            `;
+                        }
+                    }
+                });
+            });
+        }
+
+        // Cargar datos en Tiempo Real para el Cliente
+        function cargarDatosCliente() {
+            const clientList = document.getElementById('client-dynamic-list');
+            
+            ['clases', 'productos'].forEach(nodo => {
+                onValue(ref(db, nodo), (snapshot) => {
+                    if(nodo === 'clases') clientList.innerHTML = ''; // Evitar duplicados
+                    
+                    const data = snapshot.val();
+                    if(data) {
+                        for(let id in data) {
+                            const i = data[id];
+                            let mediaHtml = '';
+                            
+                            if(i.tipoMedia === 'imagen-local' && i.media) {
+                                mediaHtml = `<div class="dynamic-media-container"><img src="${i.media}" alt="${i.nombre}"></div>`;
+                            } else if(i.tipoMedia === 'video-url' && i.media) {
+                                mediaHtml = `<div class="dynamic-media-container"><video src="${i.media}" autoplay loop muted playsinline></video></div>`;
+                            }
+
+                            clientList.innerHTML += `
+                                <div class="card">
+                                    ${mediaHtml}
+                                    <small style="color:var(--primary-gold); font-weight:bold;">${nodo.toUpperCase()}</small>
+                                    <h3>${i.nombre}</h3>
+                                    <p class="price">$${i.precio} MXN</p>
+                                    <p>${i.descripcion}</p>
+                                    <button class="btn-reserve" style="margin-top:15px;" onclick="addToCart('${i.nombre}', ${i.precio})">
+                                        Consultar por WhatsApp
+                                    </button>
+                                </div>
+                            `;
+                        }
+                    }
+                });
+            });
+        }
+
+        window.eliminarItem = (nodo, id) => {
+            if(confirm("¿Estás seguro de eliminar este registro permanentemente?")) {
+                remove(ref(db, `${nodo}/${id}`));
+            }
+        };
+
+        // Iniciar la escucha para el cliente desde el momento en que carga la página
+        cargarDatosCliente();
+
+        // Efecto visual Navbar en Scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if(navbar) {
+                navbar.style.boxShadow = window.scrollY > 80 ? '0 4px 20px rgba(0,0,0,0.5)' : 'none';
+            }
+        });
+
+        let archivoBase64 = "";
+
+        // Convertir imagen a texto (Base64) para no usar Storage
+        document.getElementById('archivoMedia').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if(!file) return;
+            
+            // Límite de 2MB para no saturar la Realtime Database
+            if(file.size > 2000000) { 
+                alert("La imagen es muy pesada. Máximo 2MB.");
+                this.value = '';
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onloadend = function() { archivoBase64 = reader.result; };
+            reader.readAsDataURL(file);
+        });
+
+        window.cambiarInputMedia = function() {
+            const tipo = document.getElementById('tipoMultimedia').value;
+            document.getElementById('archivoMedia').style.display = tipo === 'imagen-local' ? 'block' : 'none';
+            document.getElementById('urlMedia').style.display = tipo === 'video-url' ? 'block' : 'none';
+        };
+
+        window.guardarFirebase = function() {
+            const cat = document.getElementById('categoria').value;
+            const tipoMedia = document.getElementById('tipoMultimedia').value;
+            
+            let mediaFinal = "";
+            if (tipoMedia === 'imagen-local') mediaFinal = archivoBase64;
+            if (tipoMedia === 'video-url') mediaFinal = document.getElementById('urlMedia').value;
+
+            const itemRef = ref(db, cat);
+            push(itemRef, {
+                nombre: document.getElementById('nombre').value,
+                precio: document.getElementById('precio').value || 0,
+                descripcion: document.getElementById('descripcion').value,
+                media: mediaFinal,
+                tipoMedia: tipoMedia
+            }).then(() => {
+                alert("¡Publicado con éxito!");
+                document.getElementById('nombre').value = '';
+                document.getElementById('precio').value = '';
+                document.getElementById('descripcion').value = '';
+                document.getElementById('archivoMedia').value = '';
+                document.getElementById('urlMedia').value = '';
+                archivoBase64 = "";
+            });
+        };
+
+    </script>
+</body>
+</html>
