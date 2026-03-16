@@ -9,7 +9,7 @@
 
     <style>
         /* =========================================
-           ESTILOS GLOBALES Y DE CLIENTE (styles.css)
+           ESTILOS GLOBALES
            ========================================= */
         :root {
             --primary-gold: #e8c547;
@@ -38,7 +38,6 @@
         }
 
         body {
-            /* Fondo con animación dorada premium - El !important evita que el JS lo ponga naranja */
             background: linear-gradient(-45deg, #0a0a0a, #1a1505, #0a0a0a, #110d02) !important;
             background-size: 400% 400% !important;
             animation: premiumGoldShift 18s ease infinite !important;
@@ -47,18 +46,15 @@
             overflow-x: hidden;
         }
 
-        /* Vistas Monolíticas */
         .view-section {
             display: none;
             width: 100%;
             min-height: 100vh;
         }
-        .view-section.active {
-            display: block;
-        }
+        .view-section.active { display: block; }
 
         /* =========================================
-           ESTILOS VISTA INICIO (inicio.html)
+           ESTILOS VISTA INICIO
            ========================================= */
         .inicio-hero {
             height: 100dvh;
@@ -89,7 +85,7 @@
             text-shadow: 0 6px 20px rgba(0,0,0,0.7);
         }
         .subtitle {
-            font-size: clamp(1.5rem, 5vw, 2.4rem);
+            font-size: clamp(1.2rem, 5vw, 2.4rem);
             margin: 1.5rem 0 4rem;
             opacity: 0.92;
             letter-spacing: 1.5px;
@@ -104,28 +100,14 @@
         }
         .btn-access {
             background: linear-gradient(135deg, #e8c547, #c9a028);
-            color: #000;
-            border: none;
-            padding: 1.2rem 2rem;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(1.4rem, 5vw, 2.1rem); 
-            letter-spacing: 1px;
-            border-radius: 60px;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(232,197,71,0.35);
-            transition: all 0.35s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            white-space: nowrap;
+            color: #000; border: none; padding: 1.2rem 2rem;
+            font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.4rem, 5vw, 2.1rem); 
+            letter-spacing: 1px; border-radius: 60px; cursor: pointer;
+            box-shadow: 0 10px 30px rgba(232,197,71,0.35); transition: all 0.35s ease;
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
             text-decoration: none;
         }
-        .btn-access:hover {
-            transform: translateY(-8px) scale(1.07);
-            box-shadow: 0 25px 50px rgba(232,197,71,0.55);
-        }
-        .emoji { font-size: 1.3em; }
+        .btn-access:hover { transform: translateY(-8px) scale(1.07); box-shadow: 0 25px 50px rgba(232,197,71,0.55); }
         .social-links { margin-top: 5vh; font-size: 1.3rem; opacity: 0.8; }
         .social-ig { color: var(--primary-gold); text-decoration: none; font-weight: 500; }
         @media (min-width: 600px) {
@@ -134,68 +116,37 @@
         }
 
         /* =========================================
-           ESTILOS VISTA CLIENTE (index.html)
+           ESTILOS VISTA CLIENTE
            ========================================= */
         .navbar {
-            background-color: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(232, 197, 71, 0.1);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 1rem 4%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background-color: rgba(10, 10, 10, 0.85); backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(232, 197, 71, 0.1); position: fixed; top: 0; width: 100%;
+            z-index: 1000; padding: 1rem 4%; display: flex; justify-content: space-between; align-items: center;
         }
-        .navbar-left {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+        .navbar-left { display: flex; align-items: center; gap: 20px; }
         .back-to-inicio {
-            position: static;
-            background: rgba(232, 197, 71, 0.1);
-            color: var(--primary-gold);
-            padding: 8px 18px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 0.9rem;
-            border: 1px solid rgba(232, 197, 71, 0.4);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-        }
-        .back-to-inicio:hover { 
-            background: var(--primary-gold); 
-            color: #000; 
-            box-shadow: 0 0 15px rgba(232, 197, 71, 0.4);
+            background: rgba(232, 197, 71, 0.1); color: var(--primary-gold); padding: 8px 18px;
+            border-radius: 30px; text-decoration: none; font-family: 'Inter', sans-serif;
+            font-weight: 600; font-size: 0.9rem; border: 1px solid rgba(232, 197, 71, 0.4);
+            cursor: pointer; display: flex; align-items: center;
         }
         .logo { display: flex; align-items: center; font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; letter-spacing: 2px; color: var(--primary-gold); }
         .logo-img { height: 55px; margin-right: 15px; }
         .nav-links { list-style: none; display: flex; gap: 3rem; }
-        .nav-links a { color: white; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: color 0.3s; cursor: pointer; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 600; font-size: 1.1rem; cursor: pointer; }
         .nav-links a:hover { color: var(--primary-gold); }
-        .cart-icon { font-size: 1.6rem; }
         
         .hero {
-            height: 100vh;
-            min-height: 850px;
+            height: 100vh; min-height: 850px;
             background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), 
                         url('https://images.unsplash.com/photo-1518611012118-696072086579?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center 40%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            background-size: cover; background-position: center 40%;
+            display: flex; align-items: center; justify-content: center; text-align: center;
         }
-        .hero-content h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4.5rem, 10vw, 9rem); letter-spacing: 4px; margin-bottom: 1.5rem; line-height: 1; }
-        .hero-subtitle { font-size: clamp(1.4rem, 4vw, 2rem); margin: 0 auto 3rem; max-width: 900px; opacity: 0.95; font-weight: 400; }
+        .hero-content { padding-bottom: 50px; } /* Ajuste de espacio vertical */
+        .hero-content h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 10vw, 9rem); letter-spacing: 4px; margin-bottom: 1.5rem; line-height: 1; }
+        .hero-subtitle { font-size: clamp(1.2rem, 4vw, 2rem); margin: 0 auto 3rem; max-width: 900px; opacity: 0.95; font-weight: 400; padding: 0 15px; }
+        
         .btn-main, .btn-reserve {
             background: linear-gradient(135deg, var(--primary-gold), var(--primary-gold-dark));
             color: #000; border: none; padding: 1.4rem 3.5rem; font-family: 'Bebas Neue', sans-serif;
@@ -203,159 +154,141 @@
             transition: all 0.4s ease; box-shadow: 0 8px 25px rgba(232, 197, 71, 0.4);
         }
         .btn-main:hover, .btn-reserve:hover { transform: translateY(-6px) scale(1.06); box-shadow: 0 20px 40px rgba(232, 197, 71, 0.6); }
-        .services, .shop { padding: 160px 6% 120px; }
-        .section-title { text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 8vw, 6.5rem); margin-bottom: 5rem; color: var(--primary-gold); letter-spacing: 3px; }
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 3rem; max-width: 1400px; margin: 0 auto; }
-        .card { background: rgba(232, 197, 71, 0.05); border: 1px solid rgba(232, 197, 71, 0.2); padding: 3rem 2.5rem; border-radius: 24px; text-align: center; transition: all 0.5s ease; backdrop-filter: blur(10px); }
-        .card:hover { transform: translateY(-20px) scale(1.05); box-shadow: 0 30px 60px rgba(232, 197, 71, 0.25); border-color: var(--primary-gold); }
-        .card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; margin-bottom: 1.2rem; letter-spacing: 1px; }
-        .class-icon { font-size: 4.5rem; margin: 1.5rem 0 2rem; color: var(--primary-gold); }
+        
+        .services, .shop { padding: 120px 6% 80px; }
+        .section-title { text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6.5rem); margin-bottom: 4rem; color: var(--primary-gold); letter-spacing: 3px; }
+        
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; max-width: 1400px; margin: 0 auto; }
+        .card { background: rgba(232, 197, 71, 0.05); border: 1px solid rgba(232, 197, 71, 0.2); padding: 3rem 2.5rem; border-radius: 24px; text-align: center; transition: all 0.5s ease; backdrop-filter: blur(10px); display: flex; flex-direction: column; justify-content: space-between;}
+        .card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(232, 197, 71, 0.25); border-color: var(--primary-gold); }
+        .card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; margin-bottom: 1.2rem; letter-spacing: 1px; line-height: 1.1; }
         .price { font-size: 2.5rem; font-weight: bold; color: var(--primary-gold); margin: 1.2rem 0; }
+        
         .date-picker, .hour-picker { width: 100%; padding: 15px; margin: 1.2rem 0; background: rgba(255,255,255,0.05); border: 1px solid var(--primary-gold); color: white; border-radius: 12px; font-size: 1.1rem; }
-        .booking-form { margin: 2rem 0; }
-        .cupo-info { font-size: 1.1rem; margin-top: 1.2rem; color: #ccc; }
+        .booking-form { margin: 1.5rem 0; width: 100%; }
         
         .featured-section { padding: 100px 6% 80px; background: rgba(10,10,10,0.7); }
         .featured-card { background: rgba(232, 197, 71, 0.07); border: 1px solid rgba(232, 197, 71, 0.3); }
-        .featured-icon { font-size: 5.5rem; margin: 0 0 1.8rem; color: #e8c547; }
-        .btn-reserve.small { padding: 1rem 2.5rem; font-size: 1.4rem; margin-top: 1.5rem; }
-        .payment-info { text-align: center; max-width: 900px; margin: 0 auto; padding: 3rem; background: rgba(232, 197, 71, 0.04); border-radius: 24px; border: 1px solid rgba(232, 197, 71, 0.15); }
+        .payment-info { text-align: center; max-width: 900px; margin: 4rem auto 0; padding: 3rem; background: rgba(232, 197, 71, 0.04); border-radius: 24px; border: 1px solid rgba(232, 197, 71, 0.15); }
         
-        .whatsapp-float { position: fixed; bottom: 40px; right: 40px; width: 75px; height: 75px; background-color: #25D366; border-radius: 50%; box-shadow: 0 8px 25px rgba(0,0,0,0.4); z-index: 9999; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
-        .whatsapp-float:hover { transform: scale(1.15); box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5); }
-        .whatsapp-icon-container { width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; }
+        /* BOTÓN DE WHATSAPP MEJORADO */
+        .whatsapp-float { 
+            position: fixed; bottom: 30px; right: 30px; width: 70px; height: 70px; 
+            background-color: #25D366; border-radius: 50%; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6); z-index: 9999; 
+            display: flex; align-items: center; justify-content: center; 
+        }
+        .whatsapp-icon-container { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; }
         .whatsapp-float img { width: 100%; height: 100%; object-fit: contain; }
         
-        .footer { background: #000; padding: 5rem 6% 3rem; text-align: center; color: #aaa; font-size: 1rem; }
-        .footer-content .logo { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--primary-gold); margin-bottom: 2rem; justify-content: center;}
-        .footer p { margin: 1rem 0; }
-        .footer a { color: var(--primary-gold); text-decoration: none; }
-        .footer a:hover { text-decoration: underline; }
-
-        /* Media Dinámica (Imágenes y Videos Firebase) */
+        .footer { background: #000; padding: 4rem 6% 3rem; text-align: center; color: #aaa; font-size: 1rem; }
+        .footer-content .logo { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--primary-gold); margin-bottom: 1rem; justify-content: center;}
+        
         .dynamic-media-container { width: 100%; height: 200px; margin-bottom: 15px; border-radius: 12px; overflow: hidden; background: rgba(0,0,0,0.3); }
         .dynamic-media-container img, .dynamic-media-container video { width: 100%; height: 100%; object-fit: cover; }
 
         /* =========================================
-           ESTILOS VISTA ADMIN (admin.html) PREMIUM
+           ESTILOS ADMIN
            ========================================= */
-        .admin-body-bg { background: transparent !important; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .admin-panel-active { align-items: flex-start !important; }
-        
         #view-admin-login { display: none; width: 100%; min-height: 100vh; justify-content: center; align-items: center; background: transparent !important; }
         #view-admin-panel { display: none; width: 100%; min-height: 100vh; background: transparent !important; padding: 40px 20px; }
 
         .login-box { 
-            background: rgba(15, 15, 15, 0.85);
-            backdrop-filter: blur(20px);
-            padding: 50px 40px;
-            border-radius: 24px;
-            border: 1px solid rgba(232, 197, 71, 0.3);
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 20px rgba(232, 197, 71, 0.1);
-            width: 90%;
-            max-width: 420px;
-            color: white; 
+            background: rgba(15, 15, 15, 0.85); backdrop-filter: blur(20px); padding: 50px 40px; border-radius: 24px; 
+            border: 1px solid rgba(232, 197, 71, 0.3); text-align: center; max-width: 420px; width: 90%; color: white; 
         }
-        .login-box h2 { color: var(--primary-gold); }
-        .login-logo { width: 80px; margin-bottom: 20px; }
+        .admin-input { width: 100%; padding: 15px; margin: 12px 0; border-radius: 12px; border: 1px solid rgba(232, 197, 71, 0.2); background: rgba(0, 0, 0, 0.6); color: white; font-size: 1rem; }
+        .btn-login { width: 100%; padding: 15px; background: var(--gold); border: none; border-radius: 12px; font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; cursor: pointer; color: #000; margin-top: 10px;}
         
-        .admin-input { 
-            width: 100%; 
-            padding: 15px; 
-            margin: 12px 0; 
-            border-radius: 12px; 
-            border: 1px solid rgba(232, 197, 71, 0.2); 
-            background: rgba(0, 0, 0, 0.6); 
-            color: white; 
-            box-sizing: border-box; 
-            font-size: 1rem; 
-            transition: all 0.3s ease; 
-        }
-        .admin-input:focus { outline: none; border-color: var(--primary-gold); box-shadow: 0 0 10px rgba(232, 197, 71, 0.2); }
-        
-        .btn-login { width: 100%; padding: 15px; background: var(--gold); border: none; border-radius: 12px; font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; cursor: pointer; transition: 0.3s; color: #000; margin-top: 10px;}
-        .btn-login:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(232, 197, 71, 0.3); }
-
         .admin-container { width: 100%; max-width: 1000px; margin: 0 auto; }
-        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: rgba(232, 197, 71, 0.1); color: var(--primary-gold); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-bottom: 20px; cursor: pointer; border: 1px solid rgba(232, 197, 71, 0.4); transition: all 0.3s ease;}
-        .btn-back:hover { background: var(--primary-gold); color: #000; }
+        .btn-back { display: inline-flex; gap: 8px; background: rgba(232, 197, 71, 0.1); color: var(--primary-gold); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-bottom: 20px; cursor: pointer; border: 1px solid rgba(232, 197, 71, 0.4); }
         
-        .admin-card { 
-            background: rgba(20, 20, 20, 0.7); 
-            backdrop-filter: blur(15px); 
-            padding: 40px; 
-            border-radius: 20px; 
-            border: 1px solid rgba(232, 197, 71, 0.2); 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5); 
-            margin-bottom: 40px; 
-            color: white; 
-        }
-        .admin-card h3 { color: var(--primary-gold); margin-bottom: 20px; font-size: 1.8rem; font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px; }
-        
+        .admin-card { background: rgba(20, 20, 20, 0.7); backdrop-filter: blur(15px); padding: 30px; border-radius: 20px; border: 1px solid rgba(232, 197, 71, 0.2); margin-bottom: 40px; color: white; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        
-        .input-responsive { 
-            width: 100%; 
-            padding: 12px; 
-            border-radius: 8px; 
-            background: rgba(0, 0, 0, 0.5); 
-            color: white; 
-            border: 1px solid rgba(232, 197, 71, 0.3); 
-            box-sizing: border-box; 
-            transition: all 0.3s ease;
-        }
-        .input-responsive:focus { border-color: var(--primary-gold); outline: none; }
-        
-        .admin-card textarea { 
-            grid-column: span 2; 
-            height: 80px; 
-            background: rgba(0, 0, 0, 0.5); 
-            color: white; 
-            border: 1px solid rgba(232, 197, 71, 0.3); 
-            padding: 10px; 
-            border-radius: 8px; 
-            width: 100%; 
-            transition: all 0.3s ease;
-        }
-        .admin-card textarea:focus { border-color: var(--primary-gold); outline: none; }
-        
-        .btn-save { grid-column: span 2; background: var(--gold); padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color:#000; transition: all 0.3s ease;}
-        .btn-save:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(232, 197, 71, 0.3); }
+        .input-responsive { width: 100%; padding: 12px; border-radius: 8px; background: rgba(0, 0, 0, 0.5); color: white; border: 1px solid rgba(232, 197, 71, 0.3); }
+        .admin-card textarea { grid-column: span 2; height: 80px; background: rgba(0, 0, 0, 0.5); color: white; border: 1px solid rgba(232, 197, 71, 0.3); padding: 10px; border-radius: 8px; width: 100%; }
+        .btn-save { grid-column: span 2; background: var(--gold); padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color:#000; }
         
         .inventory-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        
-        .item-card { 
-            background: rgba(15, 15, 15, 0.8); 
-            backdrop-filter: blur(10px); 
-            padding: 25px; 
-            border-radius: 16px; 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-            border-left: 5px solid var(--primary-gold); 
-            color: #eee; 
-            transition: transform 0.3s ease; 
-        }
-        .item-card:hover { transform: translateY(-5px); border-left-color: #fff; }
-        
-        .btn-delete { background: rgba(255, 71, 87, 0.1); color: #ff4757; border: 1px solid rgba(255, 71, 87, 0.3); width: 100%; padding: 10px; border-radius: 6px; margin-top: 10px; cursor: pointer; transition: all 0.3s ease;}
-        .btn-delete:hover { background: #ff4757; color: white; }
+        .item-card { background: rgba(15, 15, 15, 0.8); padding: 25px; border-radius: 16px; border-left: 5px solid var(--primary-gold); color: #eee; }
+        .btn-delete { background: rgba(255, 71, 87, 0.1); color: #ff4757; border: 1px solid rgba(255, 71, 87, 0.3); width: 100%; padding: 10px; border-radius: 6px; margin-top: 10px; cursor: pointer; }
 
         @media (max-width: 768px) {
             .navbar { padding: 1.2rem 6%; flex-direction: column; gap: 1.2rem; }
-            .nav-links { flex-direction: column; gap: 1.8rem; }
-            .hero { height: 90vh; min-height: 700px; }
-            .hero-content h1 { font-size: 4.5rem; }
-            .services, .shop { padding: 120px 6% 80px; }
-            .whatsapp-float { bottom: 30px; right: 30px; width: 65px; height: 65px; }
-            .whatsapp-icon-container { width: 45px; height: 45px; }
+            .nav-links { flex-direction: column; gap: 1.5rem; text-align: center; }
+            .hero { height: auto; min-height: 100vh; padding-top: 120px; } /* Ajuste celular hero */
+            .services, .shop { padding: 80px 6% 60px; }
+            /* Ajuste al botón de whatsapp en celular para que no tape los botones de reservar */
+            .whatsapp-float { bottom: 15px; right: 15px; width: 55px; height: 55px; }
+            .whatsapp-icon-container { width: 35px; height: 35px; }
             .form-grid { grid-template-columns: 1fr; }
             .admin-card textarea, .btn-save { grid-column: span 1; }
         }
-        
-        @media (max-width: 600px) {
-            .form-grid { grid-template-columns: 1fr; } /* Todo en 1 columna en celular */
-            .btn-save, textarea { grid-column: span 1; }
-        }
+        /* --- NUEVO: Estilos del botón hamburguesa (oculto en PC) --- */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px;
+    z-index: 1001;
+}
+
+.menu-toggle .bar {
+    width: 28px;
+    height: 3px;
+    background-color: var(--primary-gold);
+    transition: all 0.3s ease;
+    border-radius: 3px;
+}
+
+/* --- REEMPLAZA TU MEDIA QUERY DE 768px POR ESTE --- */
+@media (max-width: 768px) {
+    /* Mantenemos el navbar horizontal */
+    .navbar { 
+        padding: 1rem 5%; 
+        flex-direction: row; 
+    }
+    
+    /* Ajustamos el tamaño del logo para que quepa bien */
+    .logo { font-size: 2rem; }
+    .logo-img { height: 35px; margin-right: 10px; }
+    .back-to-inicio { padding: 6px 12px; font-size: 0.8rem; }
+
+    /* Mostramos el botón hamburguesa */
+    .menu-toggle { display: flex; }
+
+    /* Escondemos los links y los preparamos para el menú desplegable */
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: -100%; /* Oculto fuera de la pantalla */
+        width: 100%;
+        background-color: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        gap: 2rem;
+        transition: left 0.4s ease;
+        border-bottom: 1px solid rgba(232, 197, 71, 0.2);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+
+    /* Clase activa para mostrar el menú */
+    .nav-links.active { left: 0; }
+
+    /* Animación del ícono hamburguesa convirtiéndose en una "X" */
+    .menu-toggle.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+    /* Ajustes generales móviles que ya tenías */
+    .hero { height: 90vh; min-height: 700px; }
+    .hero-content h1 { font-size: 4.5rem; }
+    .services, .shop { padding: 120px 6% 80px; }
+    .whatsapp-float { bottom: 30px; right: 30px; width: 65px; height: 65px; }
+    .whatsapp-icon-container { width: 45px; height: 45px; }
+}
     </style>
 </head>
 <body>
@@ -367,16 +300,10 @@
                 <h1>LIGNÉE</h1>
                 <p class="subtitle">PILATES REFORMER • TLALNEPANTLA</p>
             </div>
-
             <div class="access-buttons">
-                <button class="btn-access cliente" onclick="showView('view-cliente')">
-                    <span class="emoji">👤</span>Cliente
-                </button>
-                <button class="btn-access admin" onclick="showView('view-admin-login')">
-                    <span class="emoji">⚙️</span>Administrador
-                </button>
+                <button class="btn-access cliente" onclick="showView('view-cliente')"><span class="emoji">👤</span>Cliente</button>
+                <button class="btn-access admin" onclick="showView('view-admin-login')"><span class="emoji">⚙️</span>Administrador</button>
             </div>
-
             <div class="social-links">
                 <a href="https://instagram.com/lignee.pilates" target="_blank" class="social-ig">@lignee.pilates</a>
             </div>
@@ -385,146 +312,54 @@
 
     <div id="view-cliente" class="view-section">
         <nav class="navbar">
-            <div class="navbar-left">
-                <button class="back-to-inicio" onclick="showView('view-inicio')">← Inicio</button>
-                <div class="logo">
-                    <img src="Captura de pantalla 2026-02-04 185246 copy.png" alt="LIGNÉE" class="logo-img" onerror="this.style.display='none'">
-                    LIGNÉE
-                </div>
-            </div>
-            <ul class="nav-links">
-                <li><a onclick="scrollToSection('inicio-cliente')">INICIO</a></li>
-                <li><a onclick="scrollToSection('clases')">CLASES</a></li>
-                <li><a onclick="scrollToSection('tienda')">TIENDA</a></li>
-                <li><a onclick="scrollToSection('tienda')" class="cart-icon">🛒 <span id="cart-count">0</span></a></li>
-            </ul>
-        </nav>
+    <div class="navbar-left">
+        <button class="back-to-inicio" onclick="showView('view-inicio')">← Inicio</button>
+        <div class="logo">
+            <img src="Captura de pantalla 2026-02-04 185246 copy.png" alt="LIGNÉE" class="logo-img" onerror="this.style.display='none'">
+            LIGNÉE
+        </div>
+    </div>
+    
+    <div class="menu-toggle" id="mobile-menu" onclick="toggleMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+        <li><a onclick="scrollToSection('inicio-cliente'); closeMenu()">INICIO</a></li>
+        <li><a onclick="scrollToSection('clases'); closeMenu()">CLASES</a></li>
+        <li><a onclick="scrollToSection('tienda'); closeMenu()">TIENDA</a></li>
+        <li><a onclick="scrollToSection('tienda'); closeMenu()" class="cart-icon">🛒 <span id="cart-count">0</span></a></li>
+    </ul>
+</nav>
 
         <header id="inicio-cliente" class="hero">
             <div class="hero-content">
                 <h1>TRANSFORMA TU CUERPO</h1>
                 <p class="hero-subtitle">Clases exclusivas de Reformer Pilates • Máximo 5 personas • Esculpe, fortalece y revitaliza en Tlalnepantla</p>
-                <button class="btn-main" onclick="scrollToSection('clases'); highlightFirstCard();">
+                <button class="btn-main" onclick="scrollToSection('clases');">
                     RESERVAR TU CLASE
                 </button>
             </div>
         </header>
 
-        <section id="dynamic-firebase-content" class="services" style="padding-top: 80px; padding-bottom: 40px; background: rgba(0,0,0,0.5);">
-            <h2 class="section-title" style="font-size: 3rem; margin-bottom: 3rem;">NOVEDADES EN TIEMPO REAL</h2>
-            <div id="client-dynamic-list" class="grid-container">
-                </div>
-        </section>
-
         <section id="clases" class="services">
             <h2 class="section-title">CLASES Y PAQUETES</h2>
-            <div class="grid-container">
-                <div class="card" id="card-grupal">
-                    <h3>Clase Grupal Reformer</h3>
-                    <div class="class-icon">💪</div>
-                    <p class="price">$450 MXN</p>
-                    <p>55 min • Todos los niveles • Máx. 5 personas</p>
-                    <div class="booking-form">
-                        <input type="date" class="date-picker" id="date-grupal" min="2026-02-10">
-                        <select class="hour-picker" id="hora-grupal">
-                            <option value="">Selecciona fecha primero</option>
-                        </select>
-                        <button class="btn-reserve" onclick="reservarConPDF('Clase Grupal Reformer', 450, 'grupal')">
-                            Reservar por WhatsApp
-                        </button>
-                    </div>
-                    <p class="cupo-info">Cupo restante: <span id="cupo-grupal">5</span></p>
+            <div id="dynamic-clases" class="grid-container">
                 </div>
-
-                <div class="card highlighted" id="card-privada">
-                    <h3>Sesión Privada Reformer</h3>
-                    <div class="class-icon">🔥</div>
-                    <p class="price">$950 MXN</p>
-                    <p>60 min personalizados • Tus objetivos primero</p>
-                    <div class="booking-form">
-                        <input type="date" class="date-picker" id="date-privada" min="2026-02-10">
-                        <select class="hour-picker" id="hora-privada">
-                            <option value="">Selecciona fecha primero</option>
-                        </select>
-                        <button class="btn-reserve" onclick="reservarConPDF('Sesión Privada Reformer', 950, 'privada')">
-                            Reservar por WhatsApp
-                        </button>
-                    </div>
-                    <p class="cupo-info">Cupo restante: <span id="cupo-privada">3</span></p>
-                </div>
-
-                <div class="card">
-                    <h3>Paquete 10 sesiones</h3>
-                    <div class="class-icon">🌟</div>
-                    <p class="price">$4,000 MXN <small>(10% dto)</small></p>
-                    <p>Válido 3 meses • Grupales o mixtas</p>
-                    <div class="booking-form">
-                        <input type="date" class="date-picker" id="date-paquete" min="2026-02-10">
-                        <button class="btn-reserve" onclick="reservarConPDF('Paquete 10 sesiones', 4000)">
-                            Comprar por WhatsApp
-                        </button>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <section class="featured-section">
             <h2 class="section-title">Lo que te ofrecemos</h2>
-            <div class="grid-container">
-                <div class="card featured-card">
-                    <div class="featured-icon">📅</div>
-                    <h3>Clases Destacadas</h3>
-                    <p>Reformer en grupo reducido (máx 5 personas). Todos los niveles. Horarios flexibles y atención personalizada.</p>
-                    <a onclick="scrollToSection('clases')" class="btn-reserve small" style="display:inline-block; cursor:pointer;">Ver horarios</a>
-                    
-                </div>
-
-                <div class="card featured-card">
-                    <div class="featured-icon">💳</div>
-                    <h3>Planes y Paquetes</h3>
-                    <p>Paquete de 10 sesiones con descuento. Próximamente membresías mensuales. Pago fácil por SPEI o efectivo.</p>
-                    <a onclick="scrollToSection('clases')" class="btn-reserve small" style="display:inline-block; cursor:pointer;">Ver paquetes</a>
-                </div>
-
-                <div class="card featured-card">
-                    <div class="featured-icon">👩‍🏫</div>
-                    <h3>Nuestro Equipo</h3>
-                    <p>Instructores certificados en Pilates Reformer. Enfoque en tu postura, fuerza y bienestar integral.</p>
-                    <button class="btn-reserve small" onclick="alert('Pronto: perfiles de instructores')">Conócenos</button>
-                </div>
-            </div>
+            <div id="dynamic-ofrecemos" class="grid-container">
+                 </div>
         </section>
-        
 
         <section id="tienda" class="shop">
             <h2 class="section-title">PRODUCTOS & ACCESORIOS</h2>
-            <div class="grid-container shop-grid">
-                <div class="card">
-                    <h3>Reformer Loops Set</h3>
-                    <p class="price">$680 MXN</p>
-                    <p>Par de asas premium.</p>
-                    <button class="btn-reserve" onclick="addToCart('Reformer Loops Set', 680)">Añadir por WhatsApp</button>
+            <div id="dynamic-tienda" class="grid-container shop-grid">
                 </div>
-                <div class="card">
-                    <h3>Mat Pilates Antideslizante</h3>
-                    <p class="price">$890 MXN</p>
-                    <p>6 mm, ecológico.</p>
-                    <button class="btn-reserve" onclick="addToCart('Mat Pilates Antideslizante', 890)">Añadir por WhatsApp</button>
-                </div>
-                <div class="card">
-                    <h3>Set Bandas Resistencia</h3>
-                    <p class="price">$450 MXN</p>
-                    <p>5 niveles.</p>
-                    <button class="btn-reserve" onclick="addToCart('Set Bandas Resistencia', 450)">Añadir por WhatsApp</button>
-                </div>
-                <div class="card">
-                    <h3>Calcetines Grip</h3>
-                    <p class="price">$320 MXN</p>
-                    <p>Antideslizantes.</p>
-                    <button class="btn-reserve" onclick="addToCart('Calcetines Grip', 320)">Añadir por WhatsApp</button>
-                </div>
-            </div>
-
             <div class="payment-info">
                 <h3>Métodos de pago</h3>
                 <p>Transferencia SPEI o efectivo en estudio.</p>
@@ -532,38 +367,31 @@
             </div>
         </section>
 
-        <a href="https://wa.me/525543621418?text=¡Hola!%20Quiero%20reservar%20en%20LIGNÉE%20Pilates" 
-           class="whatsapp-float" target="_blank" title="Chatea con nosotros">
-            <div class="whatsapp-icon-container">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        <section id="ubicacion" class="featured-section">
+            <h2 class="section-title">NUESTRA UBICACIÓN</h2>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <p style="font-size: 1.2rem; margin-bottom: 20px; color:#ddd;">Nos encontramos en Tlalnepantla, Estado de México. Un espacio diseñado para tu bienestar.</p>
+                <div style="border-radius: 20px; overflow: hidden; border: 2px solid var(--primary-gold);">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15042.825220302062!2d-99.2084!3d19.5375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21d5a3b7c3b3b%3A0x7b3b3b3b3b3b3b3b!2sTlalnepantla%20de%20Baz%2C%20Méx.!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
             </div>
-        </a>
-        <section id="videos-muestra" class="services" style="display: none;">
-        <h2 class="section-title">VIDEOS DE MUESTRA</h2>
-        <div class="grid-container" id="contenedor-videos">
-            </div>
-    </section>
-
-    <section id="ubicacion" class="featured-section">
-        <h2 class="section-title">NUESTRA UBICACIÓN</h2>
-        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-            <p style="font-size: 1.2rem; margin-bottom: 20px;">Nos encontramos en Tlalnepantla, Estado de México. Un espacio diseñado para tu bienestar.</p>
-            <div style="border-radius: 20px; overflow: hidden; border: 2px solid var(--primary-gold);">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15042.825220302062!2d-99.2084!3d19.5375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21d5a3b7c3b3b%3A0x7b3b3b3b3b3b3b3b!2sTlalnepantla%20de%20Baz%2C%20Méx.!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
-    </section>
-        
+        </section>
 
         <footer class="footer">
             <div class="footer-content">
                 <div class="logo">LIGNÉE</div>
                 <p>Tlalnepantla, Estado de México</p>
                 <p>WhatsApp: <a href="https://wa.me/525543621418">55 4362 1418</a></p>
-                <p>Instagram: @lignee.pilates</p>
                 <p>© 2026 LIGNÉE Pilates Reformer</p>
             </div>
         </footer>
+
+        <a href="https://wa.me/525543621418?text=¡Hola!%20Quiero%20reservar%20en%20LIGNÉE%20Pilates" 
+           class="whatsapp-float" target="_blank" title="Chatea con nosotros">
+            <div class="whatsapp-icon-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+            </div>
+        </a>
     </div>
 
     <div id="view-admin-login" class="view-section">
@@ -580,44 +408,42 @@
     <div id="view-admin-panel" class="view-section">
         <div class="admin-container">
             <button onclick="showView('view-inicio')" class="btn-back">← Salir del Panel</button>
-            <h1 style="color: var(--primary-gold); font-family: 'Bebas Neue'; font-size: 3rem; margin-bottom: 20px; letter-spacing: 2px;">Gestión de Contenido Firebase</h1>
+            <h1 style="color: var(--primary-gold); font-family: 'Bebas Neue'; font-size: 3rem; margin-bottom: 20px;">Gestión de Contenido Firebase</h1>
 
             <div class="admin-card">
-    <h3>Añadir Nuevo Registro</h3>
-    <div class="form-grid">
-        <select id="categoria" class="input-responsive">
-            <option value="clases">Clase / Sesión</option>
-            <option value="productos">Producto Tienda</option>
-            <option value="ofrecemos">Lo que ofrecemos</option>
-        </select>
-        <input type="text" id="nombre" placeholder="Nombre" class="input-responsive">
-        <input type="number" id="precio" placeholder="Precio MXN (Opcional)" class="input-responsive">
-        
-        <select id="tipoMultimedia" class="input-responsive" onchange="cambiarInputMedia()">
-            <option value="ninguno">Sin Multimedia</option>
-            <option value="imagen-local">Subir Imagen (Dispositivo)</option>
-            <option value="video-url">Enlace de Video Externo</option>
-        </select>
-        
-        <input type="file" id="archivoMedia" accept="image/*" class="input-responsive" style="display:none;">
-        <input type="text" id="urlMedia" placeholder="Pega el enlace del video" class="input-responsive" style="display:none;">
+                <h3>Añadir Nuevo Registro</h3>
+                <div class="form-grid">
+                    <select id="categoria" class="input-responsive">
+                        <option value="clases">Clase / Sesión</option>
+                        <option value="productos">Producto Tienda</option>
+                        <option value="ofrecemos">Lo que ofrecemos</option>
+                    </select>
+                    <input type="text" id="nombre" placeholder="Nombre" class="input-responsive">
+                    <input type="number" id="precio" placeholder="Precio MXN (Opcional)" class="input-responsive">
+                    
+                    <select id="tipoMultimedia" class="input-responsive" onchange="cambiarInputMedia()">
+                        <option value="ninguno">Sin Multimedia</option>
+                        <option value="imagen-local">Subir Imagen (Máx 2MB)</option>
+                        <option value="video-url">Enlace de Video Externo</option>
+                    </select>
+                    
+                    <input type="file" id="archivoMedia" accept="image/*" class="input-responsive" style="display:none;">
+                    <input type="text" id="urlMedia" placeholder="Pega el enlace del video" class="input-responsive" style="display:none;">
 
-        <textarea id="descripcion" placeholder="Descripción..."></textarea>
-        <button class="btn-save" onclick="guardarFirebase()">PUBLICAR AHORA</button>
-    </div>
-</div>
+                    <textarea id="descripcion" placeholder="Descripción..."></textarea>
+                    <button class="btn-save" onclick="guardarFirebase()">PUBLICAR AHORA</button>
+                </div>
+            </div>
 
-            <h2 style="color: white; font-family: 'Bebas Neue'; margin-bottom: 20px; font-size: 2.2rem; letter-spacing: 1px;">Inventario en Tiempo Real</h2>
+            <h2 style="color: white; font-family: 'Bebas Neue'; margin-bottom: 20px; font-size: 2.2rem;">Inventario en Tiempo Real</h2>
             <div id="lista-items" class="inventory-grid"></div>
         </div>
     </div>
 
     <script type="module">
-        // --- 1. CONFIGURACIÓN FIREBASE v12.10.0 ---
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-        import { getDatabase, ref, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
+        import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
 
-        // TUS NUEVAS CREDENCIALES
         const firebaseConfig = {
             apiKey: "AIzaSyCzeIrOCRJstrNBdQbLjGlxJtVCMLReq7I",
             authDomain: "pilates-12f09.firebaseapp.com",
@@ -630,45 +456,22 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        // --- 2. LÓGICA DE NAVEGACIÓN SPA (Single Page Application) ---
+        // NAVEGACIÓN
         window.showView = function(viewId) {
             document.querySelectorAll('.view-section').forEach(el => el.style.display = 'none');
-            
             const target = document.getElementById(viewId);
             if(target) {
                 target.style.display = (viewId === 'view-admin-login' || viewId === 'view-admin-panel') ? 'flex' : 'block';
-                
-                // El fondo ahora se maneja por CSS con !important, no afectará tu lógica de Firebase ni Javascript
-                if (viewId === 'view-admin-login' || viewId === 'view-admin-panel') {
-                    document.body.style.background = "#f18509"; 
-                } else {
-                    document.body.style.background = "#0a0a0a"; 
-                }
+                document.body.style.background = (viewId === 'view-admin-login' || viewId === 'view-admin-panel') ? "#f18509" : "#0a0a0a"; 
             }
             window.scrollTo(0, 0);
         };
+        window.scrollToSection = function(sectionId) { document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' }); };
 
-        // --- 3. FUNCIONES DEL CLIENTE (funtion.js integradas) ---
-        window.scrollToSection = function(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) section.scrollIntoView({ behavior: 'smooth' });
-        };
-
-        window.highlightFirstCard = function() {
-            const firstCard = document.getElementById('card-grupal');
-            if (firstCard) {
-                firstCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                firstCard.style.transform = 'scale(1.05)';
-                firstCard.style.borderColor = '#e8c547';
-                setTimeout(() => {
-                    firstCard.style.transform = 'none';
-                    firstCard.style.borderColor = 'rgba(232, 197, 71, 0.2)';
-                }, 3500);
-            }
-        };
+        let cartCount = 0;
+        const whatsappNumber = "525543621418"; // Actualizado al de Lignee
 
         const horariosPorDia = {
-            0: [], // Domingo
             1: ["07:00", "08:30", "10:00", "17:00", "18:30"],
             2: ["08:00", "09:30", "16:00", "19:00"],
             3: ["07:30", "09:00", "17:30", "19:30"],
@@ -677,13 +480,10 @@
             6: ["09:00", "10:30", "11:30"]
         };
 
-        let cartCount = 0;
-        const whatsappNumber = "525539001960";
-        const cupos = { grupal: 5, privada: 3 };
-
-        function actualizarHorarios(tipo) {
-            const dateEl = document.getElementById(`date-${tipo}`);
-            const horaEl = document.getElementById(`hora-${tipo}`);
+        // Asignador Dinámico de Horarios
+        window.asignarHorariosDinamicos = function(idUnico) {
+            const dateEl = document.getElementById(`date-${idUnico}`);
+            const horaEl = document.getElementById(`hora-${idUnico}`);
             if (!dateEl || !horaEl) return;
 
             dateEl.addEventListener('change', () => {
@@ -697,128 +497,201 @@
                 const horarios = horariosPorDia[dia] || [];
 
                 horaEl.innerHTML = '<option value="">Selecciona horario</option>';
-                if (horarios.length === 0) {
-                    horaEl.innerHTML += '<option>No disponible este día</option>';
-                } else {
-                    horarios.forEach(h => {
-                        horaEl.innerHTML += `<option value="${h}">${h}</option>`;
-                    });
-                }
+                if (horarios.length === 0) horaEl.innerHTML += '<option>No disponible este día</option>';
+                else horarios.forEach(h => horaEl.innerHTML += `<option value="${h}">${h}</option>`);
             });
-        }
+        };
+        // --- NUEVA FUNCIÓN: Generar PDF Profesional ---
+        window.generarPDF = function(item, price, tipo, fecha = null, hora = null) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
 
-        actualizarHorarios('grupal');
-        actualizarHorarios('privada');
+            // Encabezado oscuro y elegante
+            doc.setFillColor(10, 10, 10);
+            doc.rect(0, 0, 210, 40, 'F');
 
+            // Título principal en color dorado
+            doc.setTextColor(232, 197, 71); // Color primary-gold
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(22);
+            doc.text("LIGNÉE - PILATES REFORMER", 105, 20, { align: "center" });
+            
+            // Subtítulo
+            doc.setFontSize(12);
+            doc.setTextColor(255, 255, 255);
+            doc.text("COMPROBANTE DE PRE-RESERVA", 105, 30, { align: "center" });
+
+            // Cuerpo del recibo
+            doc.setTextColor(40, 40, 40);
+            doc.setFontSize(11);
+            doc.setFont("helvetica", "normal");
+            
+            const hoy = new Date().toLocaleDateString();
+            doc.text(`Fecha de emisión: ${hoy}`, 20, 60);
+            
+            doc.setFontSize(16);
+            doc.setFont("helvetica", "bold");
+            doc.text("Detalles de tu solicitud:", 20, 80);
+            
+            // Datos dinámicos
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "normal");
+            doc.text(`Servicio / Producto: ${item}`, 20, 95);
+            doc.text(`Total a pagar: $${price} MXN`, 20, 105);
+            
+            // Si es una clase, agregamos fecha y hora
+            if (tipo === 'clase') {
+                doc.text(`Fecha agendada: ${fecha}`, 20, 115);
+                doc.text(`Horario: ${hora}`, 20, 125);
+            }
+
+            // Línea divisoria dorada
+            doc.setDrawColor(232, 197, 71);
+            doc.setLineWidth(0.5);
+            doc.line(20, 140, 190, 140);
+
+            // Pie de página con instrucciones
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.text("Importante: Este documento es un comprobante de tu solicitud.", 105, 150, { align: "center" });
+            doc.text("Para confirmar tu lugar o pedido, por favor finaliza el pago vía WhatsApp.", 105, 156, { align: "center" });
+            
+            // Guardar y descargar el PDF automáticamente
+            doc.save(`Lignee_Reserva_${item.replace(/\s+/g, '_')}.pdf`);
+        }; 
+        // Reservar Dinámico para Clases
+        window.reservarDinamico = function(item, price, idUnico) {
+            const fecha = document.getElementById(`date-${idUnico}`)?.value || "";
+            const hora = document.getElementById(`hora-${idUnico}`)?.value || "";
+
+            if (!fecha) return alert("Por favor, selecciona una fecha.");
+            if (!hora) return alert("Por favor, selecciona un horario.");
+
+            const msg = `¡Hola LIGNÉE! Quiero reservar:\n📍 ${item} - $${price} MXN\n📅 Fecha: ${fecha}\n⏰ Horario: ${hora}\n\nMis datos:\nNombre:\nTeléfono:`;
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
+        };
+        
+
+        // Añadir al Carrito (Productos)
         window.addToCart = function(item, price) {
             cartCount++;
             document.getElementById('cart-count').innerText = cartCount;
-            const msg = `¡Hola! Quiero consultar/comprar:\n${item} - $${price} MXN\n\nMis datos:\nNombre:\nTeléfono:`;
+            const msg = `¡Hola! Me interesa comprar:\n🛍️ ${item} - $${price} MXN\n\nMis datos:\nNombre:\nTeléfono:`;
             window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
         };
 
-        window.reservarConPDF = function(item, price, tipo = null) {
-            let fecha = "", hora = "";
-            if (tipo === 'grupal') {
-                fecha = document.getElementById('date-grupal')?.value || "";
-                hora = document.getElementById('hora-grupal')?.value || "";
-            } else if (tipo === 'privada') {
-                fecha = document.getElementById('date-privada')?.value || "";
-                hora = document.getElementById('hora-privada')?.value || "";
-            } else {
-                fecha = document.getElementById('date-paquete')?.value || "";
-            }
-
-            if (!fecha) return alert("Selecciona una fecha.");
-            if ((tipo === 'grupal' || tipo === 'privada') && !hora) return alert("Selecciona un horario.");
-            if (tipo && cupos[tipo] <= 0) return alert("Sin cupo disponible.");
-
-            if (tipo) {
-                cupos[tipo]--;
-                document.getElementById(`cupo-${tipo}`).innerText = cupos[tipo];
-            }
-
-            cartCount++;
-            document.getElementById('cart-count').innerText = cartCount;
-
-            let reservas = JSON.parse(localStorage.getItem('reservasLignee') || '[]');
-            reservas.push({ servicio: item, precio: price, fecha, hora: hora || 'N/A', estado: 'Pendiente' });
-            localStorage.setItem('reservasLignee', JSON.stringify(reservas));
-
-            const msg = `¡Hola LIGNÉE! Reserva:\n${item} - $${price}\nFecha: ${fecha}${hora ? `\nHorario: ${hora}` : ''}\n\nMis datos:\nNombre:\nTeléfono:`;
-            window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
-        };
-
-        // --- 4. LÓGICA DE LOGIN ADMIN ---
+        // ADMIN LOGIN
         window.validarLogin = function() {
-            const u = document.getElementById('user').value;
-            const p = document.getElementById('pass').value;
-
-            if(u === "Edgar" && p === "Lignee") {
+            if(document.getElementById('user').value === "Edgar" && document.getElementById('pass').value === "Lignee") {
                 showView('view-admin-panel');
                 document.getElementById('view-admin-panel').style.alignItems = 'flex-start';
                 cargarDatosAdmin();
-            } else {
-                alert("Usuario o contraseña incorrectos");
-            }
+            } else { alert("Datos incorrectos"); }
         };
 
-        // --- 5. LÓGICA FIREBASE (GUARDAR Y LEER CON IMÁGENES/VIDEOS) ---
-        window.guardarFirebase = function() {
-            const cat = document.getElementById('categoria').value;
-            const itemRef = ref(db, cat);
-            const nuevoRef = push(itemRef);
+        // FIREBASE: LECTURA PARA CLIENTE (Totalmente Distribuido)
+        function cargarDatosCliente() {
+            const contenedorClases = document.getElementById('dynamic-clases');
+            const contenedorTienda = document.getElementById('dynamic-tienda');
+            const contenedorOfrecemos = document.getElementById('dynamic-ofrecemos');
 
-            const payload = {
-                nombre: document.getElementById('nombre').value,
-                precio: document.getElementById('precio').value,
-                descripcion: document.getElementById('descripcion').value,
-                cupo: document.getElementById('cupo') ? document.getElementById('cupo').value : "N/A",
-                mediaTipo: document.getElementById('tipoMultimedia').value,
-                mediaUrl: document.getElementById('urlMedia').value
-            };
-
-            set(nuevoRef, payload).then(() => {
-                alert("¡Datos guardados con éxito!");
-                document.getElementById('nombre').value = '';
-                document.getElementById('precio').value = '';
-                document.getElementById('descripcion').value = '';
-                if(document.getElementById('cupo')) document.getElementById('cupo').value = '';
-                document.getElementById('urlMedia').value = '';
-                document.getElementById('tipoMultimedia').value = 'ninguno';
-            }).catch((error) => {
-                alert("Error al guardar: " + error);
+            // 1. Cargar Clases
+            onValue(ref(db, 'clases'), (snapshot) => {
+                contenedorClases.innerHTML = '';
+                const data = snapshot.val();
+                if(data) {
+                    for(let id in data) {
+                        const i = data[id];
+                        let mediaHtml = generarMediaHTML(i);
+                        contenedorClases.innerHTML += `
+                            <div class="card">
+                                ${mediaHtml}
+                                <h3>${i.nombre}</h3>
+                                <p class="price">$${i.precio} MXN</p>
+                                <p>${i.descripcion}</p>
+                                <div class="booking-form">
+                                    <input type="date" class="date-picker" id="date-${id}" min="2026-02-10">
+                                    <select class="hour-picker" id="hora-${id}">
+                                        <option value="">Selecciona fecha primero</option>
+                                    </select>
+                                    <button class="btn-reserve" onclick="reservarDinamico('${i.nombre}', ${i.precio}, '${id}')">Reservar por WhatsApp</button>
+                                </div>
+                            </div>
+                        `;
+                    }
+                    // Activar lógica de fechas para cada carta generada
+                    for(let id in data) asignarHorariosDinamicos(id);
+                } else { contenedorClases.innerHTML = '<p>No hay clases publicadas aún.</p>'; }
             });
-        };
 
-        // Cargar datos para el Admin
+            // 2. Cargar Productos
+            onValue(ref(db, 'productos'), (snapshot) => {
+                contenedorTienda.innerHTML = '';
+                const data = snapshot.val();
+                if(data) {
+                    for(let id in data) {
+                        const i = data[id];
+                        let mediaHtml = generarMediaHTML(i);
+                        contenedorTienda.innerHTML += `
+                            <div class="card">
+                                ${mediaHtml}
+                                <h3>${i.nombre}</h3>
+                                <p class="price">$${i.precio} MXN</p>
+                                <p>${i.descripcion}</p>
+                                <button class="btn-reserve" onclick="addToCart('${i.nombre}', ${i.precio})">Añadir por WhatsApp</button>
+                            </div>
+                        `;
+                    }
+                } else { contenedorTienda.innerHTML = '<p>No hay productos disponibles por ahora.</p>'; }
+            });
+
+            // 3. Cargar Lo que Ofrecemos
+            onValue(ref(db, 'ofrecemos'), (snapshot) => {
+                contenedorOfrecemos.innerHTML = '';
+                const data = snapshot.val();
+                if(data) {
+                    for(let id in data) {
+                        const i = data[id];
+                        let mediaHtml = generarMediaHTML(i);
+                        contenedorOfrecemos.innerHTML += `
+                            <div class="card featured-card">
+                                ${mediaHtml}
+                                <h3 style="margin-top:10px;">${i.nombre}</h3>
+                                <p>${i.descripcion}</p>
+                                <a onclick="scrollToSection('clases')" class="btn-reserve small" style="display:inline-block; cursor:pointer; margin-top:15px;">Ver detalles</a>
+                            </div>
+                        `;
+                    }
+                } else { contenedorOfrecemos.innerHTML = '<p>No hay información adicional publicada.</p>'; }
+            });
+        }
+
+        function generarMediaHTML(i) {
+            if(i.tipoMedia === 'imagen-local' && i.media) {
+                return `<div class="dynamic-media-container"><img src="${i.media}" alt="${i.nombre}"></div>`;
+            } else if(i.tipoMedia === 'video-url' && i.media) {
+                return `<div class="dynamic-media-container"><video src="${i.media}" autoplay loop muted playsinline></video></div>`;
+            }
+            return '';
+        }
+
+        // FIREBASE: LECTURA PARA ADMIN
         function cargarDatosAdmin() {
             const lista = document.getElementById('lista-items');
-            
-            ['clases', 'productos'].forEach(nodo => {
+            ['clases', 'productos', 'ofrecemos'].forEach((nodo, index) => {
                 onValue(ref(db, nodo), (snapshot) => {
-                    if(nodo === 'clases') lista.innerHTML = ''; // Limpiar solo en la primera pasada para no duplicar
+                    if(index === 0) lista.innerHTML = ''; 
                     const data = snapshot.val();
-                    
                     if(data) {
                         for(let id in data) {
                             const i = data[id];
-                            let mediaHtml = '';
-                            
-                            // Renderizar imagen o video si existe
-                            if(i.mediaTipo === 'imagen-local' && i.media) {
-                                mediaHtml = `<div style="width:100%; height:120px; overflow:hidden; border-radius:8px; margin-bottom:10px;"><img src="${i.media}" style="width:100%; height:100%; object-fit:cover;"></div>`;
-                            } else if(i.mediaTipo === 'video-url' && i.media) {
-                                mediaHtml = `<div style="width:100%; height:120px; overflow:hidden; border-radius:8px; margin-bottom:10px;"><video src="${i.media}" controls style="width:100%; height:100%; object-fit:cover;"></video></div>`;
-                            }
-
+                            let mediaHtml = generarMediaHTML(i);
                             lista.innerHTML += `
                                 <div class="item-card">
                                     <small>${nodo.toUpperCase()}</small>
                                     ${mediaHtml}
                                     <h4 style="margin-top:10px;">${i.nombre}</h4>
-                                    <p><b>$${i.precio}</b></p>
-                                    <p style="font-size:0.9em; color:#bbb;">Cupo: ${i.cupo || 'N/A'}</p>
+                                    <p><b>$${i.precio || 0}</b></p>
                                     <button class="btn-delete" onclick="eliminarItem('${nodo}', '${id}')">Eliminar</button>
                                 </div>
                             `;
@@ -828,75 +701,14 @@
             });
         }
 
-        // Cargar datos en Tiempo Real para el Cliente
-        function cargarDatosCliente() {
-            const clientList = document.getElementById('client-dynamic-list');
-            
-            ['clases', 'productos'].forEach(nodo => {
-                onValue(ref(db, nodo), (snapshot) => {
-                    if(nodo === 'clases') clientList.innerHTML = ''; // Evitar duplicados
-                    
-                    const data = snapshot.val();
-                    if(data) {
-                        for(let id in data) {
-                            const i = data[id];
-                            let mediaHtml = '';
-                            
-                            if(i.tipoMedia === 'imagen-local' && i.media) {
-                                mediaHtml = `<div class="dynamic-media-container"><img src="${i.media}" alt="${i.nombre}"></div>`;
-                            } else if(i.tipoMedia === 'video-url' && i.media) {
-                                mediaHtml = `<div class="dynamic-media-container"><video src="${i.media}" autoplay loop muted playsinline></video></div>`;
-                            }
+        window.eliminarItem = (nodo, id) => { if(confirm("¿Eliminar este registro permanentemente?")) remove(ref(db, `${nodo}/${id}`)); };
 
-                            clientList.innerHTML += `
-                                <div class="card">
-                                    ${mediaHtml}
-                                    <small style="color:var(--primary-gold); font-weight:bold;">${nodo.toUpperCase()}</small>
-                                    <h3>${i.nombre}</h3>
-                                    <p class="price">$${i.precio} MXN</p>
-                                    <p>${i.descripcion}</p>
-                                    <button class="btn-reserve" style="margin-top:15px;" onclick="addToCart('${i.nombre}', ${i.precio})">
-                                        Consultar por WhatsApp
-                                    </button>
-                                </div>
-                            `;
-                        }
-                    }
-                });
-            });
-        }
-
-        window.eliminarItem = (nodo, id) => {
-            if(confirm("¿Estás seguro de eliminar este registro permanentemente?")) {
-                remove(ref(db, `${nodo}/${id}`));
-            }
-        };
-
-        // Iniciar la escucha para el cliente desde el momento en que carga la página
-        cargarDatosCliente();
-
-        // Efecto visual Navbar en Scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if(navbar) {
-                navbar.style.boxShadow = window.scrollY > 80 ? '0 4px 20px rgba(0,0,0,0.5)' : 'none';
-            }
-        });
-
+        // FIREBASE: GUARDAR (Unificada)
         let archivoBase64 = "";
-
-        // Convertir imagen a texto (Base64) para no usar Storage
         document.getElementById('archivoMedia').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if(!file) return;
-            
-            // Límite de 2MB para no saturar la Realtime Database
-            if(file.size > 2000000) { 
-                alert("La imagen es muy pesada. Máximo 2MB.");
-                this.value = '';
-                return;
-            }
-            
+            if(file.size > 2000000) { alert("Máximo 2MB."); this.value = ''; return; }
             const reader = new FileReader();
             reader.onloadend = function() { archivoBase64 = reader.result; };
             reader.readAsDataURL(file);
@@ -911,13 +723,9 @@
         window.guardarFirebase = function() {
             const cat = document.getElementById('categoria').value;
             const tipoMedia = document.getElementById('tipoMultimedia').value;
-            
-            let mediaFinal = "";
-            if (tipoMedia === 'imagen-local') mediaFinal = archivoBase64;
-            if (tipoMedia === 'video-url') mediaFinal = document.getElementById('urlMedia').value;
+            let mediaFinal = tipoMedia === 'imagen-local' ? archivoBase64 : (tipoMedia === 'video-url' ? document.getElementById('urlMedia').value : "");
 
-            const itemRef = ref(db, cat);
-            push(itemRef, {
+            push(ref(db, cat), {
                 nombre: document.getElementById('nombre').value,
                 precio: document.getElementById('precio').value || 0,
                 descripcion: document.getElementById('descripcion').value,
@@ -925,15 +733,32 @@
                 tipoMedia: tipoMedia
             }).then(() => {
                 alert("¡Publicado con éxito!");
-                document.getElementById('nombre').value = '';
-                document.getElementById('precio').value = '';
-                document.getElementById('descripcion').value = '';
-                document.getElementById('archivoMedia').value = '';
-                document.getElementById('urlMedia').value = '';
-                archivoBase64 = "";
+                document.getElementById('nombre').value = ''; document.getElementById('precio').value = '';
+                document.getElementById('descripcion').value = ''; document.getElementById('archivoMedia').value = '';
+                document.getElementById('urlMedia').value = ''; archivoBase64 = "";
             });
         };
 
+        // Iniciar
+        cargarDatosCliente();
+
+        // Función para abrir/cerrar el menú móvil
+window.toggleMenu = function() {
+    const navLinks = document.getElementById('nav-links');
+    const menuToggle = document.getElementById('mobile-menu');
+    navLinks.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+};
+
+// Función para cerrar el menú automáticamente al hacer clic en un enlace
+window.closeMenu = function() {
+    const navLinks = document.getElementById('nav-links');
+    const menuToggle = document.getElementById('mobile-menu');
+    if (navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.classList.remove('active');
+    }
+};
     </script>
 </body>
 </html>
