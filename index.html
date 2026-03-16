@@ -9,18 +9,22 @@
 
     <style>
         /* =========================================
-           ESTILOS GLOBALES
+           ESTILOS GLOBALES - NUEVA PALETA
            ========================================= */
         :root {
-            --primary-gold: #e8c547;
-            --primary-gold-dark: #c9a028;
-            --dark-bg: #0a0a0a;
-            --dark-gray: #111;
-            --text-light: #f5f5f5;
-            --accent: #e8c547;
-            --gold: #e8c547;
-            --bg-light: #f18509;
-            --text-dark: #2d3436;
+            /* Colores de tu paleta */
+            --color-1: #B7D3EB; /* Azul claro */
+            --color-2: #A8A2EB; /* Lila/Periwinkle */
+            --color-3: #6786EB; /* Azul vibrante (Principal) */
+            --color-4: #D3E7EB; /* Azul pálido/Cyan */
+            --color-5: #C7AEEB; /* Lila claro */
+
+            /* Asignaciones de tema */
+            --primary: var(--color-3);
+            --primary-hover: var(--color-2);
+            --dark-bg: #05060A; /* Negro azulado muy oscuro */
+            --dark-gray: #0d111a;
+            --text-light: #f8fafc;
             --white: #ffffff;
         }
 
@@ -31,17 +35,18 @@
             scroll-behavior: smooth;
         }
 
-        @keyframes premiumGoldShift {
+        @keyframes premiumBlueShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
         body {
-            background: linear-gradient(-45deg, #0a0a0a, #1a1505, #0a0a0a, #110d02) !important;
+            /* Fondo dinámico ajustado a tonos oscuros fríos */
+            background: linear-gradient(-45deg, #05060A, #0d111a, #0a0b15, #080a12) !important;
             background-size: 400% 400% !important;
-            animation: premiumGoldShift 18s ease infinite !important;
-            color: white;
+            animation: premiumBlueShift 18s ease infinite !important;
+            color: var(--text-light);
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
         }
@@ -59,7 +64,8 @@
         .inicio-hero {
             height: 100dvh;
             min-height: 720px;
-            background: linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.65)),
+            /* Tinte más frío para la imagen de fondo */
+            background: linear-gradient(rgba(82, 80, 80, 0.75), rgba(5, 6, 10, 0.85)),
                         url('https://images.unsplash.com/photo-1518611012118-696072086579?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             display: flex;
             flex-direction: column;
@@ -73,12 +79,12 @@
         .logo-hero {
             height: 90px;
             margin-bottom: 1.5rem;
-            filter: drop-shadow(0 4px 12px rgba(232,197,71,0.4));
+            filter: drop-shadow(0 4px 12px rgba(103, 134, 235, 0.4));
         }
         .inicio-hero h1 {
             font-family: 'Bebas Neue', sans-serif;
             font-size: clamp(6rem, 14vw, 13rem);
-            color: var(--primary-gold);
+            color: var(--color-4); 
             letter-spacing: 8px;
             line-height: 0.88;
             margin: 0;
@@ -87,6 +93,7 @@
         .subtitle {
             font-size: clamp(1.2rem, 5vw, 2.4rem);
             margin: 1.5rem 0 4rem;
+            color: var(--color-1);
             opacity: 0.92;
             letter-spacing: 1.5px;
         }
@@ -99,17 +106,17 @@
             padding: 0 20px;
         }
         .btn-access {
-            background: linear-gradient(135deg, #e8c547, #c9a028);
-            color: #000; border: none; padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, var(--color-3), var(--color-2));
+            color: #fff; border: none; padding: 1.2rem 2rem;
             font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.4rem, 5vw, 2.1rem); 
             letter-spacing: 1px; border-radius: 60px; cursor: pointer;
-            box-shadow: 0 10px 30px rgba(232,197,71,0.35); transition: all 0.35s ease;
+            box-shadow: 0 10px 30px rgba(103, 134, 235, 0.35); transition: all 0.35s ease;
             display: inline-flex; align-items: center; justify-content: center; gap: 10px;
             text-decoration: none;
         }
-        .btn-access:hover { transform: translateY(-8px) scale(1.07); box-shadow: 0 25px 50px rgba(232,197,71,0.55); }
+        .btn-access:hover { transform: translateY(-8px) scale(1.07); box-shadow: 0 25px 50px rgba(103, 134, 235, 0.55); }
         .social-links { margin-top: 5vh; font-size: 1.3rem; opacity: 0.8; }
-        .social-ig { color: var(--primary-gold); text-decoration: none; font-weight: 500; }
+        .social-ig { color: var(--color-1); text-decoration: none; font-weight: 500; }
         @media (min-width: 600px) {
             .access-buttons { flex-direction: row; justify-content: center; max-width: none; }
             .btn-access { min-width: 200px; }
@@ -119,72 +126,76 @@
            ESTILOS VISTA CLIENTE
            ========================================= */
         .navbar {
-            background-color: rgba(10, 10, 10, 0.85); backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(232, 197, 71, 0.1); position: fixed; top: 0; width: 100%;
+            background-color: rgba(5, 6, 10, 0.85); backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(103, 134, 235, 0.2); position: fixed; top: 0; width: 100%;
             z-index: 1000; padding: 1rem 4%; display: flex; justify-content: space-between; align-items: center;
         }
         .navbar-left { display: flex; align-items: center; gap: 20px; }
         .back-to-inicio {
-            background: rgba(232, 197, 71, 0.1); color: var(--primary-gold); padding: 8px 18px;
+            background: rgba(255, 255, 255, 0.05); color: var(--color-1); padding: 8px 18px;
             border-radius: 30px; text-decoration: none; font-family: 'Inter', sans-serif;
-            font-weight: 600; font-size: 0.9rem; border: 1px solid rgba(232, 197, 71, 0.4);
-            cursor: pointer; display: flex; align-items: center;
+            font-weight: 600; font-size: 0.9rem; border: 1px solid rgba(103, 134, 235, 0.4);
+            cursor: pointer; display: flex; align-items: center; transition: all 0.3s ease;
         }
-        .logo { display: flex; align-items: center; font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; letter-spacing: 2px; color: var(--primary-gold); }
+        .back-to-inicio:hover { background: rgba(103, 134, 235, 0.1); color: var(--color-4); }
+        .logo { display: flex; align-items: center; font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; letter-spacing: 2px; color: var(--primary); }
         .logo-img { height: 55px; margin-right: 15px; }
         .nav-links { list-style: none; display: flex; gap: 3rem; }
-        .nav-links a { color: white; text-decoration: none; font-weight: 600; font-size: 1.1rem; cursor: pointer; }
-        .nav-links a:hover { color: var(--primary-gold); }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--color-1); }
         
         .hero {
             height: 100vh; min-height: 850px;
-            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), 
+            background: linear-gradient(rgba(5, 6, 10, 0.5), rgba(5, 6, 10, 0.8)), 
                         url('https://images.unsplash.com/photo-1518611012118-696072086579?auto=format&fit=crop&w=1920&q=80');
             background-size: cover; background-position: center 40%;
             display: flex; align-items: center; justify-content: center; text-align: center;
         }
-        .hero-content { padding-bottom: 50px; } /* Ajuste de espacio vertical */
-        .hero-content h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 10vw, 9rem); letter-spacing: 4px; margin-bottom: 1.5rem; line-height: 1; }
-        .hero-subtitle { font-size: clamp(1.2rem, 4vw, 2rem); margin: 0 auto 3rem; max-width: 900px; opacity: 0.95; font-weight: 400; padding: 0 15px; }
+        .hero-content { padding-bottom: 50px; }
+        .hero-content h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 10vw, 9rem); letter-spacing: 4px; margin-bottom: 1.5rem; line-height: 1; color: var(--color-4); text-shadow: 0 4px 15px rgba(0,0,0,0.5);}
+        .hero-subtitle { font-size: clamp(1.2rem, 4vw, 2rem); margin: 0 auto 3rem; max-width: 900px; opacity: 0.95; font-weight: 400; padding: 0 15px; color: var(--color-1); }
         
         .btn-main, .btn-reserve {
-            background: linear-gradient(135deg, var(--primary-gold), var(--primary-gold-dark));
-            color: #000; border: none; padding: 1.4rem 3.5rem; font-family: 'Bebas Neue', sans-serif;
+            background: linear-gradient(135deg, var(--color-3), var(--color-2));
+            color: #ffffff; border: none; padding: 1.4rem 3.5rem; font-family: 'Bebas Neue', sans-serif;
             font-size: 1.8rem; letter-spacing: 2px; border-radius: 50px; cursor: pointer;
-            transition: all 0.4s ease; box-shadow: 0 8px 25px rgba(232, 197, 71, 0.4);
+            transition: all 0.4s ease; box-shadow: 0 8px 25px rgba(103, 134, 235, 0.4);
         }
-        .btn-main:hover, .btn-reserve:hover { transform: translateY(-6px) scale(1.06); box-shadow: 0 20px 40px rgba(232, 197, 71, 0.6); }
+        .btn-main:hover, .btn-reserve:hover { transform: translateY(-6px) scale(1.06); box-shadow: 0 20px 40px rgba(168, 162, 235, 0.5); }
         
         .services, .shop { padding: 120px 6% 80px; }
-        .section-title { text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6.5rem); margin-bottom: 4rem; color: var(--primary-gold); letter-spacing: 3px; }
+        .section-title { text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6.5rem); margin-bottom: 4rem; color: var(--primary); letter-spacing: 3px; }
         
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; max-width: 1400px; margin: 0 auto; }
-        .card { background: rgba(232, 197, 71, 0.05); border: 1px solid rgba(232, 197, 71, 0.2); padding: 3rem 2.5rem; border-radius: 24px; text-align: center; transition: all 0.5s ease; backdrop-filter: blur(10px); display: flex; flex-direction: column; justify-content: space-between;}
-        .card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(232, 197, 71, 0.25); border-color: var(--primary-gold); }
-        .card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; margin-bottom: 1.2rem; letter-spacing: 1px; line-height: 1.1; }
-        .price { font-size: 2.5rem; font-weight: bold; color: var(--primary-gold); margin: 1.2rem 0; }
+        .card { background: rgba(103, 134, 235, 0.05); border: 1px solid rgba(103, 134, 235, 0.2); padding: 3rem 2.5rem; border-radius: 24px; text-align: center; transition: all 0.5s ease; backdrop-filter: blur(10px); display: flex; flex-direction: column; justify-content: space-between;}
+        .card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(103, 134, 235, 0.2); border-color: var(--color-2); }
+        .card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; margin-bottom: 1.2rem; letter-spacing: 1px; line-height: 1.1; color: var(--color-4); }
+        .price { font-size: 2.5rem; font-weight: bold; color: var(--primary); margin: 1.2rem 0; }
         
-        .date-picker, .hour-picker { width: 100%; padding: 15px; margin: 1.2rem 0; background: rgba(255,255,255,0.05); border: 1px solid var(--primary-gold); color: white; border-radius: 12px; font-size: 1.1rem; }
+        .date-picker, .hour-picker { width: 100%; padding: 15px; margin: 1.2rem 0; background: rgba(255,255,255,0.05); border: 1px solid var(--primary); color: white; border-radius: 12px; font-size: 1.1rem; transition: border-color 0.3s; }
+        .date-picker:focus, .hour-picker:focus { outline: none; border-color: var(--color-5); background: rgba(255,255,255,0.1); }
         .booking-form { margin: 1.5rem 0; width: 100%; }
         
-        .featured-section { padding: 100px 6% 80px; background: rgba(10,10,10,0.7); }
-        .featured-card { background: rgba(232, 197, 71, 0.07); border: 1px solid rgba(232, 197, 71, 0.3); }
-        .payment-info { text-align: center; max-width: 900px; margin: 4rem auto 0; padding: 3rem; background: rgba(232, 197, 71, 0.04); border-radius: 24px; border: 1px solid rgba(232, 197, 71, 0.15); }
+        .featured-section { padding: 100px 6% 80px; background: rgba(5, 6, 10, 0.7); border-top: 1px solid rgba(103, 134, 235, 0.1); border-bottom: 1px solid rgba(103, 134, 235, 0.1); }
+        .featured-card { background: rgba(103, 134, 235, 0.05); border: 1px solid rgba(103, 134, 235, 0.2); }
+        .payment-info { text-align: center; max-width: 900px; margin: 4rem auto 0; padding: 3rem; background: rgba(103, 134, 235, 0.05); border-radius: 24px; border: 1px solid rgba(103, 134, 235, 0.2); }
         
-        /* BOTÓN DE WHATSAPP MEJORADO */
+        /* BOTÓN DE WHATSAPP */
         .whatsapp-float { 
             position: fixed; bottom: 30px; right: 30px; width: 70px; height: 70px; 
             background-color: #25D366; border-radius: 50%; 
             box-shadow: 0 8px 25px rgba(0,0,0,0.6); z-index: 9999; 
-            display: flex; align-items: center; justify-content: center; 
+            display: flex; align-items: center; justify-content: center; transition: transform 0.3s;
         }
+        .whatsapp-float:hover { transform: scale(1.1); }
         .whatsapp-icon-container { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; }
         .whatsapp-float img { width: 100%; height: 100%; object-fit: contain; }
         
-        .footer { background: #000; padding: 4rem 6% 3rem; text-align: center; color: #aaa; font-size: 1rem; }
-        .footer-content .logo { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--primary-gold); margin-bottom: 1rem; justify-content: center;}
+        .footer { background: #030407; padding: 4rem 6% 3rem; text-align: center; color: #8892b0; font-size: 1rem; border-top: 1px solid rgba(103, 134, 235, 0.1); }
+        .footer-content .logo { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--primary); margin-bottom: 1rem; justify-content: center;}
+        .footer-content a { color: var(--color-1); text-decoration: none; }
         
-        .dynamic-media-container { width: 100%; height: 200px; margin-bottom: 15px; border-radius: 12px; overflow: hidden; background: rgba(0,0,0,0.3); }
+        .dynamic-media-container { width: 100%; height: 200px; margin-bottom: 15px; border-radius: 12px; overflow: hidden; background: rgba(0,0,0,0.3); border: 1px solid rgba(103, 134, 235, 0.15); }
         .dynamic-media-container img, .dynamic-media-container video { width: 100%; height: 100%; object-fit: cover; }
 
         /* =========================================
@@ -194,101 +205,58 @@
         #view-admin-panel { display: none; width: 100%; min-height: 100vh; background: transparent !important; padding: 40px 20px; }
 
         .login-box { 
-            background: rgba(15, 15, 15, 0.85); backdrop-filter: blur(20px); padding: 50px 40px; border-radius: 24px; 
-            border: 1px solid rgba(232, 197, 71, 0.3); text-align: center; max-width: 420px; width: 90%; color: white; 
+            background: rgba(10, 11, 21, 0.85); backdrop-filter: blur(20px); padding: 50px 40px; border-radius: 24px; 
+            border: 1px solid rgba(103, 134, 235, 0.3); text-align: center; max-width: 420px; width: 90%; color: white; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-        .admin-input { width: 100%; padding: 15px; margin: 12px 0; border-radius: 12px; border: 1px solid rgba(232, 197, 71, 0.2); background: rgba(0, 0, 0, 0.6); color: white; font-size: 1rem; }
-        .btn-login { width: 100%; padding: 15px; background: var(--gold); border: none; border-radius: 12px; font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; cursor: pointer; color: #000; margin-top: 10px;}
+        .admin-input { width: 100%; padding: 15px; margin: 12px 0; border-radius: 12px; border: 1px solid rgba(103, 134, 235, 0.3); background: rgba(0, 0, 0, 0.4); color: white; font-size: 1rem; transition: border-color 0.3s; }
+        .admin-input:focus { outline: none; border-color: var(--color-5); }
+        .btn-login { width: 100%; padding: 15px; background: linear-gradient(135deg, var(--color-3), var(--color-2)); border: none; border-radius: 12px; font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; cursor: pointer; color: #fff; margin-top: 10px; letter-spacing: 1px;}
         
         .admin-container { width: 100%; max-width: 1000px; margin: 0 auto; }
-        .btn-back { display: inline-flex; gap: 8px; background: rgba(232, 197, 71, 0.1); color: var(--primary-gold); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-bottom: 20px; cursor: pointer; border: 1px solid rgba(232, 197, 71, 0.4); }
+        .btn-back { display: inline-flex; gap: 8px; background: rgba(103, 134, 235, 0.1); color: var(--color-1); padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-bottom: 20px; cursor: pointer; border: 1px solid rgba(103, 134, 235, 0.3); transition: all 0.3s; }
+        .btn-back:hover { background: rgba(103, 134, 235, 0.2); color: var(--color-4); }
         
-        .admin-card { background: rgba(20, 20, 20, 0.7); backdrop-filter: blur(15px); padding: 30px; border-radius: 20px; border: 1px solid rgba(232, 197, 71, 0.2); margin-bottom: 40px; color: white; }
+        .admin-card { background: rgba(10, 11, 21, 0.8); backdrop-filter: blur(15px); padding: 30px; border-radius: 20px; border: 1px solid rgba(103, 134, 235, 0.3); margin-bottom: 40px; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .input-responsive { width: 100%; padding: 12px; border-radius: 8px; background: rgba(0, 0, 0, 0.5); color: white; border: 1px solid rgba(232, 197, 71, 0.3); }
-        .admin-card textarea { grid-column: span 2; height: 80px; background: rgba(0, 0, 0, 0.5); color: white; border: 1px solid rgba(232, 197, 71, 0.3); padding: 10px; border-radius: 8px; width: 100%; }
-        .btn-save { grid-column: span 2; background: var(--gold); padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color:#000; }
+        .input-responsive { width: 100%; padding: 12px; border-radius: 8px; background: rgba(0, 0, 0, 0.4); color: white; border: 1px solid rgba(103, 134, 235, 0.3); }
+        .admin-card textarea { grid-column: span 2; height: 80px; background: rgba(0, 0, 0, 0.4); color: white; border: 1px solid rgba(103, 134, 235, 0.3); padding: 10px; border-radius: 8px; width: 100%; }
+        .btn-save { grid-column: span 2; background: linear-gradient(135deg, var(--color-3), var(--color-2)); padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color:#fff; letter-spacing: 1px;}
         
         .inventory-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .item-card { background: rgba(15, 15, 15, 0.8); padding: 25px; border-radius: 16px; border-left: 5px solid var(--primary-gold); color: #eee; }
-        .btn-delete { background: rgba(255, 71, 87, 0.1); color: #ff4757; border: 1px solid rgba(255, 71, 87, 0.3); width: 100%; padding: 10px; border-radius: 6px; margin-top: 10px; cursor: pointer; }
+        .item-card { background: rgba(10, 11, 21, 0.8); padding: 25px; border-radius: 16px; border-left: 5px solid var(--primary); color: #eee; border-top: 1px solid rgba(255,255,255,0.05); border-right: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);}
+        .btn-delete { background: rgba(255, 71, 87, 0.1); color: #ff4757; border: 1px solid rgba(255, 71, 87, 0.3); width: 100%; padding: 10px; border-radius: 6px; margin-top: 10px; cursor: pointer; transition: background 0.3s; }
+        .btn-delete:hover { background: rgba(255, 71, 87, 0.2); }
+
+        /* MEDIA QUERIES */
+        .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 6px; z-index: 1001; }
+        .menu-toggle .bar { width: 28px; height: 3px; background-color: var(--primary); transition: all 0.3s ease; border-radius: 3px; }
 
         @media (max-width: 768px) {
-            .navbar { padding: 1.2rem 6%; flex-direction: column; gap: 1.2rem; }
-            .nav-links { flex-direction: column; gap: 1.5rem; text-align: center; }
-            .hero { height: auto; min-height: 100vh; padding-top: 120px; } /* Ajuste celular hero */
-            .services, .shop { padding: 80px 6% 60px; }
-            /* Ajuste al botón de whatsapp en celular para que no tape los botones de reservar */
-            .whatsapp-float { bottom: 15px; right: 15px; width: 55px; height: 55px; }
-            .whatsapp-icon-container { width: 35px; height: 35px; }
+            .navbar { padding: 1rem 5%; flex-direction: row; }
+            .logo { font-size: 2rem; }
+            .logo-img { height: 35px; margin-right: 10px; }
+            .back-to-inicio { padding: 6px 12px; font-size: 0.8rem; }
+            .menu-toggle { display: flex; }
+            .nav-links {
+                position: absolute; top: 100%; left: -100%; width: 100%;
+                background-color: rgba(5, 6, 10, 0.95); backdrop-filter: blur(15px);
+                flex-direction: column; align-items: center; padding: 2rem 0; gap: 2rem;
+                transition: left 0.4s ease; border-bottom: 1px solid rgba(103, 134, 235, 0.2);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            }
+            .nav-links.active { left: 0; }
+            .menu-toggle.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+            .menu-toggle.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+            .hero { height: 90vh; min-height: 700px; padding-top: 80px;}
+            .hero-content h1 { font-size: 4.5rem; }
+            .services, .shop { padding: 100px 6% 60px; }
             .form-grid { grid-template-columns: 1fr; }
             .admin-card textarea, .btn-save { grid-column: span 1; }
+            .whatsapp-float { bottom: 15px; right: 15px; width: 55px; height: 55px; }
+            .whatsapp-icon-container { width: 35px; height: 35px; }
         }
-        /* --- NUEVO: Estilos del botón hamburguesa (oculto en PC) --- */
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    gap: 6px;
-    z-index: 1001;
-}
-
-.menu-toggle .bar {
-    width: 28px;
-    height: 3px;
-    background-color: var(--primary-gold);
-    transition: all 0.3s ease;
-    border-radius: 3px;
-}
-
-/* --- REEMPLAZA TU MEDIA QUERY DE 768px POR ESTE --- */
-@media (max-width: 768px) {
-    /* Mantenemos el navbar horizontal */
-    .navbar { 
-        padding: 1rem 5%; 
-        flex-direction: row; 
-    }
-    
-    /* Ajustamos el tamaño del logo para que quepa bien */
-    .logo { font-size: 2rem; }
-    .logo-img { height: 35px; margin-right: 10px; }
-    .back-to-inicio { padding: 6px 12px; font-size: 0.8rem; }
-
-    /* Mostramos el botón hamburguesa */
-    .menu-toggle { display: flex; }
-
-    /* Escondemos los links y los preparamos para el menú desplegable */
-    .nav-links {
-        position: absolute;
-        top: 100%;
-        left: -100%; /* Oculto fuera de la pantalla */
-        width: 100%;
-        background-color: rgba(10, 10, 10, 0.95);
-        backdrop-filter: blur(15px);
-        flex-direction: column;
-        align-items: center;
-        padding: 2rem 0;
-        gap: 2rem;
-        transition: left 0.4s ease;
-        border-bottom: 1px solid rgba(232, 197, 71, 0.2);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-    }
-
-    /* Clase activa para mostrar el menú */
-    .nav-links.active { left: 0; }
-
-    /* Animación del ícono hamburguesa convirtiéndose en una "X" */
-    .menu-toggle.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-    .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
-    .menu-toggle.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-
-    /* Ajustes generales móviles que ya tenías */
-    .hero { height: 90vh; min-height: 700px; }
-    .hero-content h1 { font-size: 4.5rem; }
-    .services, .shop { padding: 120px 6% 80px; }
-    .whatsapp-float { bottom: 30px; right: 30px; width: 65px; height: 65px; }
-    .whatsapp-icon-container { width: 45px; height: 45px; }
-}
     </style>
 </head>
 <body>
@@ -371,7 +339,7 @@
             <h2 class="section-title">NUESTRA UBICACIÓN</h2>
             <div style="text-align: center; max-width: 800px; margin: 0 auto;">
                 <p style="font-size: 1.2rem; margin-bottom: 20px; color:#ddd;">Nos encontramos en Tlalnepantla, Estado de México. Un espacio diseñado para tu bienestar.</p>
-                <div style="border-radius: 20px; overflow: hidden; border: 2px solid var(--primary-gold);">
+                <div style="border-radius: 20px; overflow: hidden; border: 2px solid var(--primary);">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15042.825220302062!2d-99.2084!3d19.5375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21d5a3b7c3b3b%3A0x7b3b3b3b3b3b3b3b!2sTlalnepantla%20de%20Baz%2C%20Méx.!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
@@ -408,7 +376,7 @@
     <div id="view-admin-panel" class="view-section">
         <div class="admin-container">
             <button onclick="showView('view-inicio')" class="btn-back">← Salir del Panel</button>
-            <h1 style="color: var(--primary-gold); font-family: 'Bebas Neue'; font-size: 3rem; margin-bottom: 20px;">Gestión de Contenido Firebase</h1>
+            <h1 style="color: var(--primary); font-family: 'Bebas Neue'; font-size: 3rem; margin-bottom: 20px;">Gestión de Contenido Firebase</h1>
 
             <div class="admin-card">
                 <h3>Añadir Nuevo Registro</h3>
@@ -462,14 +430,14 @@
             const target = document.getElementById(viewId);
             if(target) {
                 target.style.display = (viewId === 'view-admin-login' || viewId === 'view-admin-panel') ? 'flex' : 'block';
-                document.body.style.background = (viewId === 'view-admin-login' || viewId === 'view-admin-panel') ? "#f18509" : "#0a0a0a"; 
+                document.body.style.background = (viewId === 'view-admin-login' || viewId === 'view-admin-panel') ? "#05060A" : "#05060A"; 
             }
             window.scrollTo(0, 0);
         };
         window.scrollToSection = function(sectionId) { document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' }); };
 
         let cartCount = 0;
-        const whatsappNumber = "525543621418"; // Actualizado al de Lignee
+        const whatsappNumber = "525543621418"; 
 
         const horariosPorDia = {
             1: ["07:00", "08:30", "10:00", "17:00", "18:30"],
@@ -501,17 +469,18 @@
                 else horarios.forEach(h => horaEl.innerHTML += `<option value="${h}">${h}</option>`);
             });
         };
-        // --- NUEVA FUNCIÓN: Generar PDF Profesional ---
+        
+        // --- NUEVA FUNCIÓN: Generar PDF Profesional (CON NUEVOS COLORES) ---
         window.generarPDF = function(item, price, tipo, fecha = null, hora = null) {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
-            // Encabezado oscuro y elegante
-            doc.setFillColor(10, 10, 10);
+            // Encabezado oscuro azulado
+            doc.setFillColor(10, 11, 21);
             doc.rect(0, 0, 210, 40, 'F');
 
-            // Título principal en color dorado
-            doc.setTextColor(232, 197, 71); // Color primary-gold
+            // Título principal en color azul vibrante
+            doc.setTextColor(103, 134, 235); // RGB de tu color #6786EB
             doc.setFont("helvetica", "bold");
             doc.setFontSize(22);
             doc.text("LIGNÉE - PILATES REFORMER", 105, 20, { align: "center" });
@@ -545,8 +514,8 @@
                 doc.text(`Horario: ${hora}`, 20, 125);
             }
 
-            // Línea divisoria dorada
-            doc.setDrawColor(232, 197, 71);
+            // Línea divisoria azul vibrante
+            doc.setDrawColor(103, 134, 235);
             doc.setLineWidth(0.5);
             doc.line(20, 140, 190, 140);
 
@@ -559,6 +528,7 @@
             // Guardar y descargar el PDF automáticamente
             doc.save(`Lignee_Reserva_${item.replace(/\s+/g, '_')}.pdf`);
         }; 
+        
         // Reservar Dinámico para Clases
         window.reservarDinamico = function(item, price, idUnico) {
             const fecha = document.getElementById(`date-${idUnico}`)?.value || "";
@@ -571,7 +541,6 @@
             window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
         };
         
-
         // Añadir al Carrito (Productos)
         window.addToCart = function(item, price) {
             cartCount++;
@@ -589,7 +558,7 @@
             } else { alert("Datos incorrectos"); }
         };
 
-        // FIREBASE: LECTURA PARA CLIENTE (Totalmente Distribuido)
+        // FIREBASE: LECTURA PARA CLIENTE
         function cargarDatosCliente() {
             const contenedorClases = document.getElementById('dynamic-clases');
             const contenedorTienda = document.getElementById('dynamic-tienda');
@@ -619,7 +588,6 @@
                             </div>
                         `;
                     }
-                    // Activar lógica de fechas para cada carta generada
                     for(let id in data) asignarHorariosDinamicos(id);
                 } else { contenedorClases.innerHTML = '<p>No hay clases publicadas aún.</p>'; }
             });
@@ -703,7 +671,7 @@
 
         window.eliminarItem = (nodo, id) => { if(confirm("¿Eliminar este registro permanentemente?")) remove(ref(db, `${nodo}/${id}`)); };
 
-        // FIREBASE: GUARDAR (Unificada)
+        // FIREBASE: GUARDAR
         let archivoBase64 = "";
         document.getElementById('archivoMedia').addEventListener('change', function(e) {
             const file = e.target.files[0];
@@ -743,22 +711,22 @@
         cargarDatosCliente();
 
         // Función para abrir/cerrar el menú móvil
-window.toggleMenu = function() {
-    const navLinks = document.getElementById('nav-links');
-    const menuToggle = document.getElementById('mobile-menu');
-    navLinks.classList.toggle('active');
-    menuToggle.classList.toggle('active');
-};
+        window.toggleMenu = function() {
+            const navLinks = document.getElementById('nav-links');
+            const menuToggle = document.getElementById('mobile-menu');
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        };
 
-// Función para cerrar el menú automáticamente al hacer clic en un enlace
-window.closeMenu = function() {
-    const navLinks = document.getElementById('nav-links');
-    const menuToggle = document.getElementById('mobile-menu');
-    if (navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-        menuToggle.classList.remove('active');
-    }
-};
+        // Función para cerrar el menú automáticamente al hacer clic en un enlace
+        window.closeMenu = function() {
+            const navLinks = document.getElementById('nav-links');
+            const menuToggle = document.getElementById('mobile-menu');
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        };
     </script>
 </body>
 </html>
