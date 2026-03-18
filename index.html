@@ -12,17 +12,15 @@
            ESTILOS GLOBALES - NUEVA PALETA
            ========================================= */
         :root {
-            /* Colores de tu paleta */
-            --color-1: #B7D3EB; /* Azul claro */
-            --color-2: #A8A2EB; /* Lila/Periwinkle */
-            --color-3: #6786EB; /* Azul vibrante (Principal) */
-            --color-4: #D3E7EB; /* Azul pálido/Cyan */
-            --color-5: #C7AEEB; /* Lila claro */
+            var(--color-1): #B7D3EB; 
+            --color-2: #A8A2EB; 
+            --color-3: #6786EB; 
+            --color-4: #D3E7EB; 
+            --color-5: #C7AEEB; 
 
-            /* Asignaciones de tema */
             --primary: var(--color-3);
             --primary-hover: var(--color-2);
-            --dark-bg: #05060A; /* Negro azulado muy oscuro */
+            --dark-bg: #05060A; 
             --dark-gray: #0d111a;
             --text-light: #f8fafc;
             --white: #ffffff;
@@ -42,7 +40,6 @@
         }
 
         body {
-            /* Fondo dinámico ajustado a tonos oscuros fríos */
             background: linear-gradient(-45deg, #05060A, #0d111a, #0a0b15, #080a12) !important;
             background-size: 400% 400% !important;
             animation: premiumBlueShift 18s ease infinite !important;
@@ -64,9 +61,9 @@
         .inicio-hero {
             height: 100dvh;
             min-height: 720px;
-            /* Tinte más frío para la imagen de fondo */
+            /* SE CAMBIÓ EL FONDO POR lignee lugar.jpeg */
             background: linear-gradient(rgba(82, 80, 80, 0.75), rgba(5, 6, 10, 0.85)),
-                        url('https://images.unsplash.com/photo-1518611012118-696072086579?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+                        url('lignee_lugar.jpeg') center/cover no-repeat;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -140,14 +137,15 @@
         .back-to-inicio:hover { background: rgba(103, 134, 235, 0.1); color: var(--color-4); }
         .logo { display: flex; align-items: center; font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; letter-spacing: 2px; color: var(--primary); }
         .logo-img { height: 55px; margin-right: 15px; }
-        .nav-links { list-style: none; display: flex; gap: 3rem; }
+        .nav-links { list-style: none; display: flex; gap: 2.5rem; align-items: center;}
         .nav-links a { color: var(--text-light); text-decoration: none; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: color 0.3s ease; }
         .nav-links a:hover { color: var(--color-1); }
         
         .hero {
             height: 100vh; min-height: 850px;
-            background: linear-gradient(rgba(5, 6, 10, 0.5), rgba(5, 6, 10, 0.8)), 
-                        url('https://images.unsplash.com/photo-1518611012118-696072086579?auto=format&fit=crop&w=1920&q=80');
+            /* SE CAMBIÓ EL FONDO POR lignee lugar.jpeg TAMBIÉN AQUÍ */
+            background: linear-gradient(rgba(5, 6, 10, 0.7), rgba(5, 6, 10, 0.9)), 
+                        url('lignee lugar.jpeg');
             background-size: cover; background-position: center 40%;
             display: flex; align-items: center; justify-content: center; text-align: center;
         }
@@ -163,7 +161,7 @@
         }
         .btn-main:hover, .btn-reserve:hover { transform: translateY(-6px) scale(1.06); box-shadow: 0 20px 40px rgba(168, 162, 235, 0.5); }
         
-        .services, .shop { padding: 120px 6% 80px; }
+        .services, .shop, .info-section { padding: 120px 6% 80px; }
         .section-title { text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6.5rem); margin-bottom: 4rem; color: var(--primary); letter-spacing: 3px; }
         
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; max-width: 1400px; margin: 0 auto; }
@@ -223,6 +221,10 @@
         .admin-card textarea { grid-column: span 2; height: 80px; background: rgba(0, 0, 0, 0.4); color: white; border: 1px solid rgba(103, 134, 235, 0.3); padding: 10px; border-radius: 8px; width: 100%; }
         .btn-save { grid-column: span 2; background: linear-gradient(135deg, var(--color-3), var(--color-2)); padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color:#fff; letter-spacing: 1px;}
         
+        /* Contenedor doble para Precio y Select */
+        .precio-container { display: flex; gap: 10px; grid-column: span 1; }
+        .precio-container .input-responsive { flex: 1; }
+
         .inventory-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         .item-card { background: rgba(10, 11, 21, 0.8); padding: 25px; border-radius: 16px; border-left: 5px solid var(--primary); color: #eee; border-top: 1px solid rgba(255,255,255,0.05); border-right: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);}
         .btn-delete { background: rgba(255, 71, 87, 0.1); color: #ff4757; border: 1px solid rgba(255, 71, 87, 0.3); width: 100%; padding: 10px; border-radius: 6px; margin-top: 10px; cursor: pointer; transition: background 0.3s; }
@@ -251,8 +253,9 @@
             .menu-toggle.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
             .hero { height: 90vh; min-height: 700px; padding-top: 80px;}
             .hero-content h1 { font-size: 4.5rem; }
-            .services, .shop { padding: 100px 6% 60px; }
+            .services, .shop, .info-section { padding: 100px 6% 60px; }
             .form-grid { grid-template-columns: 1fr; }
+            .precio-container { flex-direction: column; }
             .admin-card textarea, .btn-save { grid-column: span 1; }
             .whatsapp-float { bottom: 15px; right: 15px; width: 55px; height: 55px; }
             .whatsapp-icon-container { width: 35px; height: 35px; }
@@ -280,27 +283,28 @@
 
     <div id="view-cliente" class="view-section">
         <nav class="navbar">
-    <div class="navbar-left">
-        <button class="back-to-inicio" onclick="showView('view-inicio')">← Inicio</button>
-        <div class="logo">
-            <img src="Captura de pantalla 2026-02-04 185246 copy.png" alt="LIGNÉE" class="logo-img" onerror="this.style.display='none'">
-            LIGNÉE
-        </div>
-    </div>
-    
-    <div class="menu-toggle" id="mobile-menu" onclick="toggleMenu()">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </div>
+            <div class="navbar-left">
+                <button class="back-to-inicio" onclick="showView('view-inicio')">← Inicio</button>
+                <div class="logo">
+                    <img src="Captura de pantalla 2026-02-04 185246 copy.png" alt="LIGNÉE" class="logo-img" onerror="this.style.display='none'">
+                    LIGNÉE
+                </div>
+            </div>
+            
+            <div class="menu-toggle" id="mobile-menu" onclick="toggleMenu()">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
 
-    <ul class="nav-links" id="nav-links">
-        <li><a onclick="scrollToSection('inicio-cliente'); closeMenu()">INICIO</a></li>
-        <li><a onclick="scrollToSection('clases'); closeMenu()">CLASES</a></li>
-        <li><a onclick="scrollToSection('tienda'); closeMenu()">TIENDA</a></li>
-        <li><a onclick="scrollToSection('tienda'); closeMenu()" class="cart-icon">🛒 <span id="cart-count">0</span></a></li>
-    </ul>
-</nav>
+            <ul class="nav-links" id="nav-links">
+                <li><a onclick="scrollToSection('inicio-cliente'); closeMenu()">INICIO</a></li>
+                <li><a onclick="scrollToSection('clases'); closeMenu()">CLASES</a></li>
+                <li><a onclick="scrollToSection('info-lugar'); closeMenu()">EL LUGAR</a></li>
+                <li><a onclick="scrollToSection('tienda'); closeMenu()">TIENDA</a></li>
+                <li><a onclick="scrollToSection('tienda'); closeMenu()" class="cart-icon">🛒 <span id="cart-count">0</span></a></li>
+            </ul>
+        </nav>
 
         <header id="inicio-cliente" class="hero">
             <div class="hero-content">
@@ -315,19 +319,25 @@
         <section id="clases" class="services">
             <h2 class="section-title">CLASES Y PAQUETES</h2>
             <div id="dynamic-clases" class="grid-container">
-                </div>
+            </div>
+        </section>
+
+        <section id="info-lugar" class="info-section">
+            <h2 class="section-title">CONOCE NUESTRO ESPACIO</h2>
+            <div id="dynamic-info" class="grid-container">
+            </div>
         </section>
 
         <section class="featured-section">
             <h2 class="section-title">Lo que te ofrecemos</h2>
             <div id="dynamic-ofrecemos" class="grid-container">
-                 </div>
+            </div>
         </section>
 
         <section id="tienda" class="shop">
             <h2 class="section-title">PRODUCTOS & ACCESORIOS</h2>
             <div id="dynamic-tienda" class="grid-container shop-grid">
-                </div>
+            </div>
             <div class="payment-info">
                 <h3>Métodos de pago</h3>
                 <p>Transferencia SPEI o efectivo en estudio.</p>
@@ -336,19 +346,19 @@
         </section>
 
         <section id="ubicacion" class="featured-section">
-    <h2 class="section-title">NUESTRA UBICACIÓN</h2>
-    <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-        <p style="font-size: 1.2rem; margin-bottom: 20px; color:#ddd;">Nos encontramos en <strong>Jose Guadalupe Covarrubias #45, San Miguel Chapultepec</strong>. Un espacio diseñado para tu bienestar.</p>
-        <div style="border-radius: 20px; overflow: hidden; border: 2px solid var(--primary);">
-            <iframe src="https://maps.google.com/maps?q=Jose+Guadalupe+Covarrubias+%2345,+San+Miguel+Chapultepec&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-    </div>
-</section>
+            <h2 class="section-title">NUESTRA UBICACIÓN</h2>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <p style="font-size: 1.2rem; margin-bottom: 20px; color:#ddd;">Nos encontramos en <strong>Jose Guadalupe Covarrubias #45, San Miguel Chapultepec</strong>. Un espacio diseñado para tu bienestar.</p>
+                <div style="border-radius: 20px; overflow: hidden; border: 2px solid var(--primary);">
+                    <iframe src="https://maps.google.com/maps?q=Jose+Guadalupe+Covarrubias+%2345,+San+Miguel+Chapultepec&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
 
         <footer class="footer">
             <div class="footer-content">
                 <div class="logo">LIGNÉE</div>
-                <p>Miguel Hidalgo, Ciudad de méxico</p>
+                <p>Miguel Hidalgo, Ciudad de México</p>
                 <p>WhatsApp: <a href="https://wa.me/525543621418">55 4362 1418</a></p>
                 <p>© 2026 LIGNÉE Pilates Reformer</p>
             </div>
@@ -385,9 +395,18 @@
                         <option value="clases">Clase / Sesión</option>
                         <option value="productos">Producto Tienda</option>
                         <option value="ofrecemos">Lo que ofrecemos</option>
+                        <option value="info">Información del Lugar</option>
                     </select>
+                    
                     <input type="text" id="nombre" placeholder="Nombre" class="input-responsive">
-                    <input type="number" id="precio" placeholder="Precio MXN (Opcional)" class="input-responsive">
+                    
+                    <div class="precio-container">
+                        <input type="number" id="precio" placeholder="Precio MXN" class="input-responsive">
+                        <select id="mostrarPrecio" class="input-responsive">
+                            <option value="si">Se verá el precio</option>
+                            <option value="no">No se verá el precio</option>
+                        </select>
+                    </div>
                     
                     <select id="tipoMultimedia" class="input-responsive" onchange="cambiarInputMedia()">
                         <option value="ninguno">Sin Multimedia</option>
@@ -448,7 +467,6 @@
             6: ["09:00", "10:30", "11:30"]
         };
 
-        // Asignador Dinámico de Horarios
         window.asignarHorariosDinamicos = function(idUnico) {
             const dateEl = document.getElementById(`date-${idUnico}`);
             const horaEl = document.getElementById(`hora-${idUnico}`);
@@ -470,27 +488,22 @@
             });
         };
         
-        // --- NUEVA FUNCIÓN: Generar PDF Profesional (CON NUEVOS COLORES) ---
         window.generarPDF = function(item, price, tipo, fecha = null, hora = null) {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
-            // Encabezado oscuro azulado
             doc.setFillColor(10, 11, 21);
             doc.rect(0, 0, 210, 40, 'F');
 
-            // Título principal en color azul vibrante
-            doc.setTextColor(103, 134, 235); // RGB de tu color #6786EB
+            doc.setTextColor(103, 134, 235);
             doc.setFont("helvetica", "bold");
             doc.setFontSize(22);
             doc.text("LIGNÉE - PILATES REFORMER", 105, 20, { align: "center" });
             
-            // Subtítulo
             doc.setFontSize(12);
             doc.setTextColor(255, 255, 255);
             doc.text("COMPROBANTE DE PRE-RESERVA", 105, 30, { align: "center" });
 
-            // Cuerpo del recibo
             doc.setTextColor(40, 40, 40);
             doc.setFontSize(11);
             doc.setFont("helvetica", "normal");
@@ -502,54 +515,52 @@
             doc.setFont("helvetica", "bold");
             doc.text("Detalles de tu solicitud:", 20, 80);
             
-            // Datos dinámicos
             doc.setFontSize(12);
             doc.setFont("helvetica", "normal");
             doc.text(`Servicio / Producto: ${item}`, 20, 95);
-            doc.text(`Total a pagar: $${price} MXN`, 20, 105);
             
-            // Si es una clase, agregamos fecha y hora
+            // Si tiene precio, lo mostramos en el PDF
+            if(price !== null && price !== undefined) {
+                doc.text(`Total a pagar: $${price} MXN`, 20, 105);
+            }
+            
             if (tipo === 'clase') {
                 doc.text(`Fecha agendada: ${fecha}`, 20, 115);
                 doc.text(`Horario: ${hora}`, 20, 125);
             }
 
-            // Línea divisoria azul vibrante
             doc.setDrawColor(103, 134, 235);
             doc.setLineWidth(0.5);
             doc.line(20, 140, 190, 140);
 
-            // Pie de página con instrucciones
             doc.setFontSize(10);
             doc.setTextColor(100, 100, 100);
             doc.text("Importante: Este documento es un comprobante de tu solicitud.", 105, 150, { align: "center" });
             doc.text("Para confirmar tu lugar o pedido, por favor finaliza el pago vía WhatsApp.", 105, 156, { align: "center" });
             
-            // Guardar y descargar el PDF automáticamente
             doc.save(`Lignee_Reserva_${item.replace(/\s+/g, '_')}.pdf`);
         }; 
         
-        // Reservar Dinámico para Clases
-        window.reservarDinamico = function(item, price, idUnico) {
+        window.reservarDinamico = function(item, price, idUnico, mostrarPrecio) {
             const fecha = document.getElementById(`date-${idUnico}`)?.value || "";
             const hora = document.getElementById(`hora-${idUnico}`)?.value || "";
 
             if (!fecha) return alert("Por favor, selecciona una fecha.");
             if (!hora) return alert("Por favor, selecciona un horario.");
 
-            const msg = `¡Hola LIGNÉE! Quiero reservar:\n📍 ${item} - $${price} MXN\n📅 Fecha: ${fecha}\n⏰ Horario: ${hora}\n\nMis datos:\nNombre:\nTeléfono:`;
+            let precioTexto = (mostrarPrecio === 'no') ? "" : ` - $${price} MXN`;
+            const msg = `¡Hola LIGNÉE! Quiero reservar:\n📍 ${item}${precioTexto}\n📅 Fecha: ${fecha}\n⏰ Horario: ${hora}\n\nMis datos:\nNombre:\nTeléfono:`;
             window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
         };
         
-        // Añadir al Carrito (Productos)
-        window.addToCart = function(item, price) {
+        window.addToCart = function(item, price, mostrarPrecio) {
             cartCount++;
             document.getElementById('cart-count').innerText = cartCount;
-            const msg = `¡Hola! Me interesa comprar:\n🛍️ ${item} - $${price} MXN\n\nMis datos:\nNombre:\nTeléfono:`;
+            let precioTexto = (mostrarPrecio === 'no') ? "" : ` - $${price} MXN`;
+            const msg = `¡Hola! Me interesa:\n🛍️ ${item}${precioTexto}\n\nMis datos:\nNombre:\nTeléfono:`;
             window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
         };
 
-        // ADMIN LOGIN
         window.validarLogin = function() {
             if(document.getElementById('user').value === "Edgar" && document.getElementById('pass').value === "Lignee") {
                 showView('view-admin-panel');
@@ -563,6 +574,7 @@
             const contenedorClases = document.getElementById('dynamic-clases');
             const contenedorTienda = document.getElementById('dynamic-tienda');
             const contenedorOfrecemos = document.getElementById('dynamic-ofrecemos');
+            const contenedorInfo = document.getElementById('dynamic-info');
 
             // 1. Cargar Clases
             onValue(ref(db, 'clases'), (snapshot) => {
@@ -572,18 +584,21 @@
                     for(let id in data) {
                         const i = data[id];
                         let mediaHtml = generarMediaHTML(i);
+                        // NUEVA LÓGICA DE PRECIO
+                        let precioHtml = (i.mostrarPrecio === 'no') ? '' : `<p class="price">$${i.precio} MXN</p>`;
+                        
                         contenedorClases.innerHTML += `
                             <div class="card">
                                 ${mediaHtml}
                                 <h3>${i.nombre}</h3>
-                                <p class="price">$${i.precio} MXN</p>
+                                ${precioHtml}
                                 <p>${i.descripcion}</p>
                                 <div class="booking-form">
                                     <input type="date" class="date-picker" id="date-${id}" min="2026-02-10">
                                     <select class="hour-picker" id="hora-${id}">
                                         <option value="">Selecciona fecha primero</option>
                                     </select>
-                                    <button class="btn-reserve" onclick="reservarDinamico('${i.nombre}', ${i.precio}, '${id}')">Reservar por WhatsApp</button>
+                                    <button class="btn-reserve" onclick="reservarDinamico('${i.nombre}', ${i.precio}, '${id}', '${i.mostrarPrecio}')">Reservar por WhatsApp</button>
                                 </div>
                             </div>
                         `;
@@ -600,13 +615,15 @@
                     for(let id in data) {
                         const i = data[id];
                         let mediaHtml = generarMediaHTML(i);
+                        let precioHtml = (i.mostrarPrecio === 'no') ? '' : `<p class="price">$${i.precio} MXN</p>`;
+                        
                         contenedorTienda.innerHTML += `
                             <div class="card">
                                 ${mediaHtml}
                                 <h3>${i.nombre}</h3>
-                                <p class="price">$${i.precio} MXN</p>
+                                ${precioHtml}
                                 <p>${i.descripcion}</p>
-                                <button class="btn-reserve" onclick="addToCart('${i.nombre}', ${i.precio})">Añadir por WhatsApp</button>
+                                <button class="btn-reserve" onclick="addToCart('${i.nombre}', ${i.precio}, '${i.mostrarPrecio}')">Me interesa</button>
                             </div>
                         `;
                     }
@@ -632,6 +649,25 @@
                     }
                 } else { contenedorOfrecemos.innerHTML = '<p>No hay información adicional publicada.</p>'; }
             });
+
+            // 4. NUEVO: Cargar Información del Lugar
+            onValue(ref(db, 'info'), (snapshot) => {
+                contenedorInfo.innerHTML = '';
+                const data = snapshot.val();
+                if(data) {
+                    for(let id in data) {
+                        const i = data[id];
+                        let mediaHtml = generarMediaHTML(i);
+                        contenedorInfo.innerHTML += `
+                            <div class="card">
+                                ${mediaHtml}
+                                <h3>${i.nombre}</h3>
+                                <p>${i.descripcion}</p>
+                            </div>
+                        `;
+                    }
+                } else { contenedorInfo.innerHTML = '<p>Próximamente más información sobre nuestras instalaciones.</p>'; }
+            });
         }
 
         function generarMediaHTML(i) {
@@ -646,7 +682,8 @@
         // FIREBASE: LECTURA PARA ADMIN
         function cargarDatosAdmin() {
             const lista = document.getElementById('lista-items');
-            ['clases', 'productos', 'ofrecemos'].forEach((nodo, index) => {
+            // SE AÑADIÓ 'info' AL ARREGLO
+            ['clases', 'productos', 'ofrecemos', 'info'].forEach((nodo, index) => {
                 onValue(ref(db, nodo), (snapshot) => {
                     if(index === 0) lista.innerHTML = ''; 
                     const data = snapshot.val();
@@ -654,12 +691,13 @@
                         for(let id in data) {
                             const i = data[id];
                             let mediaHtml = generarMediaHTML(i);
+                            let etiquetaPrecio = (i.mostrarPrecio === 'no') ? "<i>Precio oculto al cliente</i>" : `$${i.precio || 0}`;
                             lista.innerHTML += `
                                 <div class="item-card">
                                     <small>${nodo.toUpperCase()}</small>
                                     ${mediaHtml}
                                     <h4 style="margin-top:10px;">${i.nombre}</h4>
-                                    <p><b>$${i.precio || 0}</b></p>
+                                    <p><b>${etiquetaPrecio}</b></p>
                                     <button class="btn-delete" onclick="eliminarItem('${nodo}', '${id}')">Eliminar</button>
                                 </div>
                             `;
@@ -696,21 +734,24 @@
             push(ref(db, cat), {
                 nombre: document.getElementById('nombre').value,
                 precio: document.getElementById('precio').value || 0,
+                mostrarPrecio: document.getElementById('mostrarPrecio').value, // GUARDAMOS LA PREFERENCIA DE PRECIO
                 descripcion: document.getElementById('descripcion').value,
                 media: mediaFinal,
                 tipoMedia: tipoMedia
             }).then(() => {
                 alert("¡Publicado con éxito!");
-                document.getElementById('nombre').value = ''; document.getElementById('precio').value = '';
-                document.getElementById('descripcion').value = ''; document.getElementById('archivoMedia').value = '';
-                document.getElementById('urlMedia').value = ''; archivoBase64 = "";
+                document.getElementById('nombre').value = ''; 
+                document.getElementById('precio').value = '';
+                document.getElementById('mostrarPrecio').value = 'si';
+                document.getElementById('descripcion').value = ''; 
+                document.getElementById('archivoMedia').value = '';
+                document.getElementById('urlMedia').value = ''; 
+                archivoBase64 = "";
             });
         };
 
-        // Iniciar
         cargarDatosCliente();
 
-        // Función para abrir/cerrar el menú móvil
         window.toggleMenu = function() {
             const navLinks = document.getElementById('nav-links');
             const menuToggle = document.getElementById('mobile-menu');
@@ -718,7 +759,6 @@
             menuToggle.classList.toggle('active');
         };
 
-        // Función para cerrar el menú automáticamente al hacer clic en un enlace
         window.closeMenu = function() {
             const navLinks = document.getElementById('nav-links');
             const menuToggle = document.getElementById('mobile-menu');
