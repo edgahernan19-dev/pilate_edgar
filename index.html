@@ -61,7 +61,6 @@
         .inicio-hero {
             height: 100dvh;
             min-height: 720px;
-            /* SE CAMBIÓ EL FONDO POR lignee lugar.jpeg */
             background: linear-gradient(rgba(82, 80, 80, 0.75), rgba(5, 6, 10, 0.85)),
                         url('lignee_lugar.jpeg') center/cover no-repeat;
             display: flex;
@@ -143,7 +142,6 @@
         
         .hero {
             height: 100vh; min-height: 850px;
-            /* SE CAMBIÓ EL FONDO POR lignee lugar.jpeg TAMBIÉN AQUÍ */
             background: linear-gradient(rgba(5, 6, 10, 0.7), rgba(5, 6, 10, 0.9)), 
                         url('lignee lugar.jpeg');
             background-size: cover; background-position: center 40%;
@@ -226,9 +224,12 @@
         .precio-container .input-responsive { flex: 1; }
 
         .inventory-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .item-card { background: rgba(10, 11, 21, 0.8); padding: 25px; border-radius: 16px; border-left: 5px solid var(--primary); color: #eee; border-top: 1px solid rgba(255,255,255,0.05); border-right: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);}
-        .btn-delete { background: rgba(255, 71, 87, 0.1); color: #ff4757; border: 1px solid rgba(255, 71, 87, 0.3); width: 100%; padding: 10px; border-radius: 6px; margin-top: 10px; cursor: pointer; transition: background 0.3s; }
+        .item-card { background: rgba(10, 11, 21, 0.8); padding: 25px; border-radius: 16px; border-left: 5px solid var(--primary); color: #eee; border-top: 1px solid rgba(255,255,255,0.05); border-right: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; justify-content: space-between;}
+        .btn-delete { background: rgba(255, 71, 87, 0.1); color: #ff4757; border: 1px solid rgba(255, 71, 87, 0.3); width: 100%; padding: 10px; border-radius: 6px; margin-top: 10px; cursor: pointer; transition: background 0.3s; font-weight: 600;}
         .btn-delete:hover { background: rgba(255, 71, 87, 0.2); }
+        .admin-section-wrapper { margin-bottom: 50px; }
+        .admin-section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-bottom: 20px; }
+        .admin-section-header h2 { color: var(--color-1); font-family: 'Bebas Neue'; font-size: 2.2rem; margin: 0; letter-spacing: 1px; }
 
         /* MEDIA QUERIES */
         .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 6px; z-index: 1001; }
@@ -259,6 +260,7 @@
             .admin-card textarea, .btn-save { grid-column: span 1; }
             .whatsapp-float { bottom: 15px; right: 15px; width: 55px; height: 55px; }
             .whatsapp-icon-container { width: 35px; height: 35px; }
+            .admin-section-header { flex-direction: column; align-items: flex-start; gap: 10px; }
         }
     </style>
 </head>
@@ -309,7 +311,7 @@
         <header id="inicio-cliente" class="hero">
             <div class="hero-content">
                 <h1>TRANSFORMA TU CUERPO</h1>
-                <p class="hero-subtitle">Clases exclusivas de Reformer Pilates • Esculpe, fortalece y revitaliza en Chapultepec</p>
+                <p class="hero-subtitle">Clases exclusivas de Reformer Pilates •  Esculpe, fortalece y revitaliza en Chapultepec</p>
                 <button class="btn-main" onclick="scrollToSection('clases');">
                     RESERVAR TU CLASE
                 </button>
@@ -386,7 +388,7 @@
     <div id="view-admin-panel" class="view-section">
         <div class="admin-container">
             <button onclick="showView('view-inicio')" class="btn-back">← Salir del Panel</button>
-            <h1 style="color: var(--primary); font-family: 'Bebas Neue'; font-size: 3rem; margin-bottom: 20px;">Gestión de Contenido Firebase</h1>
+            <h1 style="color: var(--primary); font-family: 'Bebas Neue'; font-size: 3rem; margin-bottom: 20px;">Gestión de Contenido</h1>
 
             <div class="admin-card">
                 <h3>Añadir Nuevo Registro</h3>
@@ -422,8 +424,10 @@
                 </div>
             </div>
 
-            <h2 style="color: white; font-family: 'Bebas Neue'; margin-bottom: 20px; font-size: 2.2rem;">Inventario en Tiempo Real</h2>
-            <div id="lista-items" class="inventory-grid"></div>
+            <h2 style="color: white; font-family: 'Bebas Neue'; margin-bottom: 30px; font-size: 2.2rem; text-align: center;">INVENTARIO EN TIEMPO REAL</h2>
+            
+            <div id="lista-items"></div>
+
         </div>
     </div>
 
@@ -488,59 +492,6 @@
             });
         };
         
-        window.generarPDF = function(item, price, tipo, fecha = null, hora = null) {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-
-            doc.setFillColor(10, 11, 21);
-            doc.rect(0, 0, 210, 40, 'F');
-
-            doc.setTextColor(103, 134, 235);
-            doc.setFont("helvetica", "bold");
-            doc.setFontSize(22);
-            doc.text("LIGNÉE - PILATES REFORMER", 105, 20, { align: "center" });
-            
-            doc.setFontSize(12);
-            doc.setTextColor(255, 255, 255);
-            doc.text("COMPROBANTE DE PRE-RESERVA", 105, 30, { align: "center" });
-
-            doc.setTextColor(40, 40, 40);
-            doc.setFontSize(11);
-            doc.setFont("helvetica", "normal");
-            
-            const hoy = new Date().toLocaleDateString();
-            doc.text(`Fecha de emisión: ${hoy}`, 20, 60);
-            
-            doc.setFontSize(16);
-            doc.setFont("helvetica", "bold");
-            doc.text("Detalles de tu solicitud:", 20, 80);
-            
-            doc.setFontSize(12);
-            doc.setFont("helvetica", "normal");
-            doc.text(`Servicio / Producto: ${item}`, 20, 95);
-            
-            // Si tiene precio, lo mostramos en el PDF
-            if(price !== null && price !== undefined) {
-                doc.text(`Total a pagar: $${price} MXN`, 20, 105);
-            }
-            
-            if (tipo === 'clase') {
-                doc.text(`Fecha agendada: ${fecha}`, 20, 115);
-                doc.text(`Horario: ${hora}`, 20, 125);
-            }
-
-            doc.setDrawColor(103, 134, 235);
-            doc.setLineWidth(0.5);
-            doc.line(20, 140, 190, 140);
-
-            doc.setFontSize(10);
-            doc.setTextColor(100, 100, 100);
-            doc.text("Importante: Este documento es un comprobante de tu solicitud.", 105, 150, { align: "center" });
-            doc.text("Para confirmar tu lugar o pedido, por favor finaliza el pago vía WhatsApp.", 105, 156, { align: "center" });
-            
-            doc.save(`Lignee_Reserva_${item.replace(/\s+/g, '_')}.pdf`);
-        }; 
-        
         window.reservarDinamico = function(item, price, idUnico, mostrarPrecio) {
             const fecha = document.getElementById(`date-${idUnico}`)?.value || "";
             const hora = document.getElementById(`hora-${idUnico}`)?.value || "";
@@ -562,7 +513,7 @@
         };
 
         window.validarLogin = function() {
-            if(document.getElementById('user').value === "Edgar" && document.getElementById('pass').value === "Lignee") {
+            if(document.getElementById('user').value === "edgahernan19@gmail.com" && document.getElementById('pass').value === "Lignée26") {
                 showView('view-admin-panel');
                 document.getElementById('view-admin-panel').style.alignItems = 'flex-start';
                 cargarDatosAdmin();
@@ -576,7 +527,6 @@
             const contenedorOfrecemos = document.getElementById('dynamic-ofrecemos');
             const contenedorInfo = document.getElementById('dynamic-info');
 
-            // 1. Cargar Clases
             onValue(ref(db, 'clases'), (snapshot) => {
                 contenedorClases.innerHTML = '';
                 const data = snapshot.val();
@@ -584,7 +534,6 @@
                     for(let id in data) {
                         const i = data[id];
                         let mediaHtml = generarMediaHTML(i);
-                        // NUEVA LÓGICA DE PRECIO
                         let precioHtml = (i.mostrarPrecio === 'no') ? '' : `<p class="price">$${i.precio} MXN</p>`;
                         
                         contenedorClases.innerHTML += `
@@ -607,7 +556,6 @@
                 } else { contenedorClases.innerHTML = '<p>No hay clases publicadas aún.</p>'; }
             });
 
-            // 2. Cargar Productos
             onValue(ref(db, 'productos'), (snapshot) => {
                 contenedorTienda.innerHTML = '';
                 const data = snapshot.val();
@@ -630,7 +578,6 @@
                 } else { contenedorTienda.innerHTML = '<p>No hay productos disponibles por ahora.</p>'; }
             });
 
-            // 3. Cargar Lo que Ofrecemos
             onValue(ref(db, 'ofrecemos'), (snapshot) => {
                 contenedorOfrecemos.innerHTML = '';
                 const data = snapshot.val();
@@ -650,7 +597,6 @@
                 } else { contenedorOfrecemos.innerHTML = '<p>No hay información adicional publicada.</p>'; }
             });
 
-            // 4. NUEVO: Cargar Información del Lugar
             onValue(ref(db, 'info'), (snapshot) => {
                 contenedorInfo.innerHTML = '';
                 const data = snapshot.val();
@@ -679,35 +625,83 @@
             return '';
         }
 
-        // FIREBASE: LECTURA PARA ADMIN
+        // ==========================================
+        // FIREBASE: LECTURA PARA ADMIN (CORREGIDA)
+        // ==========================================
         function cargarDatosAdmin() {
             const lista = document.getElementById('lista-items');
-            // SE AÑADIÓ 'info' AL ARREGLO
-            ['clases', 'productos', 'ofrecemos', 'info'].forEach((nodo, index) => {
-                onValue(ref(db, nodo), (snapshot) => {
-                    if(index === 0) lista.innerHTML = ''; 
+            lista.innerHTML = ''; // Limpiamos una sola vez al cargar el panel
+
+            const categorias = [
+                { id: 'clases', nombre: 'CLASES Y SESIONES' },
+                { id: 'productos', nombre: 'PRODUCTOS TIENDA' },
+                { id: 'ofrecemos', nombre: 'LO QUE OFRECEMOS' },
+                { id: 'info', nombre: 'INFORMACIÓN DEL LUGAR' }
+            ];
+
+            categorias.forEach((cat) => {
+                // Creamos un contenedor global por cada categoría
+                const seccionDiv = document.createElement('div');
+                seccionDiv.className = 'admin-section-wrapper';
+                
+                // Estructura: Título, Botón de Eliminar Todo y Cuadrícula específica
+                seccionDiv.innerHTML = `
+                    <div class="admin-section-header">
+                        <h2>${cat.nombre}</h2>
+                        <button class="btn-delete" style="width: auto; margin: 0; padding: 8px 20px;" onclick="eliminarSeccionCompleta('${cat.id}', '${cat.nombre}')">Eliminar toda la sección</button>
+                    </div>
+                    <div id="grid-${cat.id}" class="inventory-grid"></div>
+                `;
+                lista.appendChild(seccionDiv);
+
+                const gridContenedor = document.getElementById(`grid-${cat.id}`);
+
+                // Escuchamos los cambios solo para la cuadrícula de esta categoría
+                onValue(ref(db, cat.id), (snapshot) => {
+                    gridContenedor.innerHTML = '';
                     const data = snapshot.val();
+                    
                     if(data) {
                         for(let id in data) {
                             const i = data[id];
                             let mediaHtml = generarMediaHTML(i);
-                            let etiquetaPrecio = (i.mostrarPrecio === 'no') ? "<i>Precio oculto al cliente</i>" : `$${i.precio || 0}`;
-                            lista.innerHTML += `
+                            // Validamos si no hay nombre para evitar el "undefined"
+                            let nombreItem = i.nombre || "Sin nombre (Revisa este registro)";
+                            let etiquetaPrecio = (i.mostrarPrecio === 'no') ? "<i>Precio oculto</i>" : `$${i.precio || 0}`;
+                            
+                            gridContenedor.innerHTML += `
                                 <div class="item-card">
-                                    <small>${nodo.toUpperCase()}</small>
-                                    ${mediaHtml}
-                                    <h4 style="margin-top:10px;">${i.nombre}</h4>
-                                    <p><b>${etiquetaPrecio}</b></p>
-                                    <button class="btn-delete" onclick="eliminarItem('${nodo}', '${id}')">Eliminar</button>
+                                    <div>
+                                        ${mediaHtml}
+                                        <h4 style="margin-top:10px; color: #fff; font-size: 1.2rem;">${nombreItem}</h4>
+                                        <p style="color: var(--primary); margin: 8px 0;"><b>${etiquetaPrecio}</b></p>
+                                        <p style="font-size: 0.85rem; color: #aaa;">${i.descripcion || 'Sin descripción'}</p>
+                                    </div>
+                                    <button class="btn-delete" onclick="eliminarItem('${cat.id}', '${id}')">Eliminar individual</button>
                                 </div>
                             `;
                         }
+                    } else {
+                        gridContenedor.innerHTML = `<p style="color: #666; font-style: italic; grid-column: 1/-1;">No hay registros en la sección de ${cat.nombre}.</p>`;
                     }
                 });
             });
         }
 
-        window.eliminarItem = (nodo, id) => { if(confirm("¿Eliminar este registro permanentemente?")) remove(ref(db, `${nodo}/${id}`)); };
+        // FUNCIÓN NUEVA: ELIMINAR SECCIÓN COMPLETA
+        window.eliminarSeccionCompleta = (nodoId, nodoNombre) => {
+            if(confirm(`⚠️ ¡ATENCIÓN! ¿Estás completamente seguro de eliminar TODOS los registros de "${nodoNombre}"? Esta acción borrará mucha información y no se puede deshacer.`)) {
+                remove(ref(db, nodoId))
+                .then(() => alert(`Sección ${nodoNombre} eliminada correctamente.`))
+                .catch((error) => alert("Error al eliminar la sección: " + error.message));
+            }
+        };
+
+        window.eliminarItem = (nodo, id) => { 
+            if(confirm("¿Eliminar este registro individual permanentemente?")) {
+                remove(ref(db, `${nodo}/${id}`)); 
+            }
+        };
 
         // FIREBASE: GUARDAR
         let archivoBase64 = "";
@@ -734,7 +728,7 @@
             push(ref(db, cat), {
                 nombre: document.getElementById('nombre').value,
                 precio: document.getElementById('precio').value || 0,
-                mostrarPrecio: document.getElementById('mostrarPrecio').value, // GUARDAMOS LA PREFERENCIA DE PRECIO
+                mostrarPrecio: document.getElementById('mostrarPrecio').value, 
                 descripcion: document.getElementById('descripcion').value,
                 media: mediaFinal,
                 tipoMedia: tipoMedia
