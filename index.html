@@ -142,14 +142,15 @@
         
         .hero {
             height: 100vh; min-height: 850px;
+            /* AQUÍ ESTÁ LA PRIMERA IMAGEN PARA EL FONDO INICIAL */
             background: linear-gradient(rgba(5, 6, 10, 0.7), rgba(5, 6, 10, 0.9)), 
-                        url('lignee lugar.jpeg');
+                        url('Rich lifestyle.jpeg');
             background-size: cover; background-position: center 40%;
             display: flex; align-items: center; justify-content: center; text-align: center;
         }
         .hero-content { padding-bottom: 50px; }
-        .hero-content h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 10vw, 9rem); letter-spacing: 4px; margin-bottom: 1.5rem; line-height: 1; color: var(--color-4); text-shadow: 0 4px 15px rgba(0,0,0,0.5);}
-        .hero-subtitle { font-size: clamp(1.2rem, 4vw, 2rem); margin: 0 auto 3rem; max-width: 900px; opacity: 0.95; font-weight: 400; padding: 0 15px; color: var(--color-1); }
+        .hero-content h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 8vw, 7.5rem); letter-spacing: 4px; margin-bottom: 1.5rem; line-height: 1.1; color: var(--color-4); text-shadow: 0 4px 15px rgba(0,0,0,0.5);}
+        .hero-subtitle { font-size: clamp(1rem, 3vw, 1.5rem); margin: 0 auto 3rem; max-width: 900px; opacity: 0.95; font-weight: 400; padding: 0 15px; color: var(--color-1); line-height: 1.6; }
         
         .btn-main, .btn-reserve {
             background: linear-gradient(135deg, var(--color-3), var(--color-2));
@@ -162,6 +163,14 @@
         .services, .shop, .info-section { padding: 120px 6% 80px; }
         .section-title { text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6.5rem); margin-bottom: 4rem; color: var(--primary); letter-spacing: 3px; }
         
+        /* AQUÍ ESTÁ LA SEGUNDA IMAGEN COMO FONDO PARA LA SECCIÓN "CONOCE NUESTRO ESPACIO" */
+        #info-lugar {
+            background: linear-gradient(rgba(5, 6, 10, 0.85), rgba(5, 6, 10, 0.95)), url('_.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; max-width: 1400px; margin: 0 auto; }
         .card { background: rgba(103, 134, 235, 0.05); border: 1px solid rgba(103, 134, 235, 0.2); padding: 3rem 2.5rem; border-radius: 24px; text-align: center; transition: all 0.5s ease; backdrop-filter: blur(10px); display: flex; flex-direction: column; justify-content: space-between;}
         .card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(103, 134, 235, 0.2); border-color: var(--color-2); }
@@ -310,8 +319,8 @@
 
         <header id="inicio-cliente" class="hero">
             <div class="hero-content">
-                <h1>TRANSFORMA TU CUERPO</h1>
-                <p class="hero-subtitle">Clases exclusivas de Reformer Pilates •  Esculpe, fortalece y revitaliza en Chapultepec</p>
+                <h1>REFORMER EN LA SAN<br>MIGUEL CHAPULTEPEC |<br>LIGNÉE</h1>
+                <p class="hero-subtitle">"Descubre un espacio diseñado para tu bienestar. En LIGNÉE combinamos la precisión del Pilates Reformer con un enfoque personalizado para ayudarte a fortalecer, esculpir y revitalizar tu cuerpo en el corazón de la CDMX."</p>
                 <button class="btn-main" onclick="scrollToSection('clases');">
                     RESERVAR TU CLASE
                 </button>
@@ -331,7 +340,7 @@
         </section>
 
         <section class="featured-section">
-            <h2 class="section-title">Lo que te ofrecemos</h2>
+            <h2 class="section-title">LO QUE TE OFRECEMOS</h2>
             <div id="dynamic-ofrecemos" class="grid-container">
             </div>
         </section>
@@ -513,7 +522,7 @@
         };
 
         window.validarLogin = function() {
-            if(document.getElementById('user').value === "edgahernan19@gmail.com" && document.getElementById('pass').value === "Lignee26") {
+            if(document.getElementById('user').value === "edgahernan19@gmail.com" && document.getElementById('pass').value === "Lignée26") {
                 showView('view-admin-panel');
                 document.getElementById('view-admin-panel').style.alignItems = 'flex-start';
                 cargarDatosAdmin();
