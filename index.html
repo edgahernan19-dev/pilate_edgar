@@ -142,7 +142,6 @@
         
         .hero {
             height: 100vh; min-height: 850px;
-            /* AQUÍ ESTÁ LA PRIMERA IMAGEN PARA EL FONDO INICIAL */
             background: linear-gradient(rgba(5, 6, 10, 0.7), rgba(5, 6, 10, 0.9)), 
                         url('Rich lifestyle.jpeg');
             background-size: cover; background-position: center 40%;
@@ -163,7 +162,6 @@
         .services, .shop, .info-section { padding: 120px 6% 80px; }
         .section-title { text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6.5rem); margin-bottom: 4rem; color: var(--primary); letter-spacing: 3px; }
         
-        /* AQUÍ ESTÁ LA SEGUNDA IMAGEN COMO FONDO PARA LA SECCIÓN "CONOCE NUESTRO ESPACIO" */
         #info-lugar {
             background: linear-gradient(rgba(5, 6, 10, 0.85), rgba(5, 6, 10, 0.95)), url('_.jpeg');
             background-size: cover;
@@ -185,7 +183,6 @@
         .featured-card { background: rgba(103, 134, 235, 0.05); border: 1px solid rgba(103, 134, 235, 0.2); }
         .payment-info { text-align: center; max-width: 900px; margin: 4rem auto 0; padding: 3rem; background: rgba(103, 134, 235, 0.05); border-radius: 24px; border: 1px solid rgba(103, 134, 235, 0.2); }
         
-        /* BOTÓN DE WHATSAPP */
         .whatsapp-float { 
             position: fixed; bottom: 30px; right: 30px; width: 70px; height: 70px; 
             background-color: #25D366; border-radius: 50%; 
@@ -228,7 +225,6 @@
         .admin-card textarea { grid-column: span 2; height: 80px; background: rgba(0, 0, 0, 0.4); color: white; border: 1px solid rgba(103, 134, 235, 0.3); padding: 10px; border-radius: 8px; width: 100%; }
         .btn-save { grid-column: span 2; background: linear-gradient(135deg, var(--color-3), var(--color-2)); padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color:#fff; letter-spacing: 1px;}
         
-        /* Contenedor doble para Precio y Select */
         .precio-container { display: flex; gap: 10px; grid-column: span 1; }
         .precio-container .input-responsive { flex: 1; }
 
@@ -310,6 +306,7 @@
 
             <ul class="nav-links" id="nav-links">
                 <li><a onclick="scrollToSection('inicio-cliente'); closeMenu()">INICIO</a></li>
+                <li><a onclick="scrollToSection('beneficios'); closeMenu()">BENEFICIOS</a></li>
                 <li><a onclick="scrollToSection('clases'); closeMenu()">CLASES</a></li>
                 <li><a onclick="scrollToSection('info-lugar'); closeMenu()">EL LUGAR</a></li>
                 <li><a onclick="scrollToSection('tienda'); closeMenu()">TIENDA</a></li>
@@ -327,6 +324,44 @@
             </div>
         </header>
 
+        <section id="beneficios" style="padding: 120px 6% 60px; max-width: 1400px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; align-items: center;">
+                
+                <div style="border-radius: 24px; overflow: hidden; border: 1px solid rgba(103, 134, 235, 0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.4); height: 100%; min-height: 400px;">
+                    <img src="pilates mejoras.jfif" alt="Beneficios Pilates Reformer" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+
+                <div class="card" style="text-align: left; padding: 3.5rem 3rem; height: 100%; justify-content: center;">
+                    <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 4vw, 3.8rem); margin-bottom: 1.5rem; color: var(--color-4); letter-spacing: 2px; line-height: 1.1;">
+                        ¿Por qué elegir nuestras clases de Pilates en Chapultepec?
+                    </h2>
+                    
+                    <p style="font-size: 1.15rem; color: var(--color-1); line-height: 1.7; margin-bottom: 1.5rem; opacity: 0.95;">
+                        En nuestro estudio, no solo vienes a entrenar; vienes a transformar tu movilidad. El Pilates Reformer es ideal para mejorar la postura, aumentar la flexibilidad y fortalecer el core sin impacto en las articulaciones.
+                    </p>
+                    
+                    <p style="font-size: 1.15rem; color: var(--color-1); line-height: 1.7; margin-bottom: 1.8rem; opacity: 0.95;">
+                        Ya seas principiante o avanzado, nuestras sesiones en la colonia San Miguel Chapultepec te ofrecen:
+                    </p>
+                    
+                    <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-light); font-size: 1.15rem; line-height: 1.6;">
+                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px;">
+                            <span style="color: var(--primary); font-size: 1.3rem;">✦</span> 
+                            <span>Atención personalizada en grupos reducidos.</span>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px;">
+                            <span style="color: var(--primary); font-size: 1.3rem;">✦</span> 
+                            <span>Instructores certificados que cuidan tu técnica.</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; gap: 12px;">
+                            <span style="color: var(--primary); font-size: 1.3rem;">✦</span> 
+                            <span>Equipo de alta gama para un entrenamiento seguro y efectivo.</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
         <section id="clases" class="services">
             <h2 class="section-title">CLASES Y PAQUETES</h2>
             <div id="dynamic-clases" class="grid-container">
@@ -529,7 +564,6 @@
             } else { alert("Datos incorrectos"); }
         };
 
-        // FIREBASE: LECTURA PARA CLIENTE
         function cargarDatosCliente() {
             const contenedorClases = document.getElementById('dynamic-clases');
             const contenedorTienda = document.getElementById('dynamic-tienda');
@@ -634,12 +668,9 @@
             return '';
         }
 
-        // ==========================================
-        // FIREBASE: LECTURA PARA ADMIN (CORREGIDA)
-        // ==========================================
         function cargarDatosAdmin() {
             const lista = document.getElementById('lista-items');
-            lista.innerHTML = ''; // Limpiamos una sola vez al cargar el panel
+            lista.innerHTML = ''; 
 
             const categorias = [
                 { id: 'clases', nombre: 'CLASES Y SESIONES' },
@@ -649,11 +680,9 @@
             ];
 
             categorias.forEach((cat) => {
-                // Creamos un contenedor global por cada categoría
                 const seccionDiv = document.createElement('div');
                 seccionDiv.className = 'admin-section-wrapper';
                 
-                // Estructura: Título, Botón de Eliminar Todo y Cuadrícula específica
                 seccionDiv.innerHTML = `
                     <div class="admin-section-header">
                         <h2>${cat.nombre}</h2>
@@ -665,7 +694,6 @@
 
                 const gridContenedor = document.getElementById(`grid-${cat.id}`);
 
-                // Escuchamos los cambios solo para la cuadrícula de esta categoría
                 onValue(ref(db, cat.id), (snapshot) => {
                     gridContenedor.innerHTML = '';
                     const data = snapshot.val();
@@ -674,7 +702,6 @@
                         for(let id in data) {
                             const i = data[id];
                             let mediaHtml = generarMediaHTML(i);
-                            // Validamos si no hay nombre para evitar el "undefined"
                             let nombreItem = i.nombre || "Sin nombre (Revisa este registro)";
                             let etiquetaPrecio = (i.mostrarPrecio === 'no') ? "<i>Precio oculto</i>" : `$${i.precio || 0}`;
                             
@@ -697,7 +724,6 @@
             });
         }
 
-        // FUNCIÓN NUEVA: ELIMINAR SECCIÓN COMPLETA
         window.eliminarSeccionCompleta = (nodoId, nodoNombre) => {
             if(confirm(`⚠️ ¡ATENCIÓN! ¿Estás completamente seguro de eliminar TODOS los registros de "${nodoNombre}"? Esta acción borrará mucha información y no se puede deshacer.`)) {
                 remove(ref(db, nodoId))
@@ -712,7 +738,6 @@
             }
         };
 
-        // FIREBASE: GUARDAR
         let archivoBase64 = "";
         document.getElementById('archivoMedia').addEventListener('change', function(e) {
             const file = e.target.files[0];
